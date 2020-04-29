@@ -14,7 +14,8 @@ dependencies:
   get_it: ^4.0.1
   google_fonts: ^0.3.2
   cupertino_icons: ^0.1.2
-
+  cloud_firestore: ^0.13.4+2
+  firebase_auth: ^0.15.5+3
 dev_dependencies:
   flutter_test:
     sdk: flutter
