@@ -1,8 +1,15 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:little_drops/ui/views/onboarding.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case OnboardingRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: Onboarding(),
+      );
+
     // case LoginViewRoute:
     //   return _getPageRoute(
     //     routeName: settings.name,
@@ -27,11 +34,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //       child: StoreView(),
     //     ),
     //   );
-    // case WelcomeRoute:
-    //   return _getPageRoute(
-    //     routeName: settings.name,
-    //     viewToShow: WelcomScreen(),
-    //   );
+
     // case StartUpViewRoute:
     //   return _getPageRoute(
     //     routeName: settings.name,

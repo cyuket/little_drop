@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: StartUpView(),
-      initialRoute: StartUpViewRoute,
+      initialRoute: OnboardingRoute,
       onGenerateRoute: generateRoute,
     );
   }
