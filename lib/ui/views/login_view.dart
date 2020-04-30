@@ -9,12 +9,10 @@ import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/widgets/social_media.dart';
 import 'package:little_drops/constants/route_names.dart';
 
-class SignUpView extends StatelessWidget {
+class LoginView extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final phonNumberController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final fullNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
@@ -25,7 +23,7 @@ class SignUpView extends StatelessWidget {
         backgroundColor: AppColors().background,
         automaticallyImplyLeading: false,
         title: Text(
-          'Sign Up',
+          'Login',
           style: GoogleFonts.lato(
               textStyle: TextStyle(fontSize: 20, color: AppColors().textColor)),
         ),
@@ -47,18 +45,6 @@ class SignUpView extends StatelessWidget {
                           fontSize: 15, color: AppColors().textColor)),
                 ),
               ),
-              Text('Full Name:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
-              SizedBox(
-                height: 10,
-              ),
-              InputField(
-                smallVersion: true,
-                controller: fullNameController,
-                placeholder: "Enter Full Name",
-              ),
               Text('Email:',
                   style: GoogleFonts.lato(
                       textStyle: TextStyle(
@@ -70,18 +56,6 @@ class SignUpView extends StatelessWidget {
                 smallVersion: true,
                 controller: emailController,
                 placeholder: "Enter email",
-              ),
-              Text('Phone Number:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
-              SizedBox(
-                height: 10,
-              ),
-              InputField(
-                smallVersion: true,
-                controller: phonNumberController,
-                placeholder: "Phone Number",
               ),
               Text('Password:',
                   style: GoogleFonts.lato(
@@ -96,20 +70,7 @@ class SignUpView extends StatelessWidget {
                 placeholder: "Password",
                 password: true,
               ),
-              Text('Confirm:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
-              SizedBox(
-                height: 10,
-              ),
-              InputField(
-                smallVersion: true,
-                controller: confirmPasswordController,
-                placeholder: "Confirm password",
-                password: true,
-              ),
-              BusyButton(title: 'Sign Up', onPressed: null),
+              BusyButton(title: 'Login', onPressed: null),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Column(
@@ -154,9 +115,10 @@ class SignUpView extends StatelessWidget {
                         )),
                     InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, LoginViewRoute);
+                        Navigator.pushReplacementNamed(
+                            context, SignUpViewRoute);
                       },
-                      child: Text('Login',
+                      child: Text('Signup',
                           style: GoogleFonts.lato(
                             textStyle: TextStyle(
                                 fontSize: 12, color: AppColors().primaryColor),
