@@ -1,6 +1,7 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:little_drops/ui/views/onboarding.dart';
+import 'package:little_drops/ui/views/sign_up.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -15,11 +16,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //     routeName: settings.name,
     //     viewToShow: LoginView(),
     //   );
-    // case SignUpViewRoute:
-    //   return _getPageRoute(
-    //     routeName: settings.name,
-    //     viewToShow: SignUpView(),
-    //   );
+    case SignUpViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: SignUpView(),
+      );
     // case HomeViewRoute:
     //   return _getPageRoute(
     //     routeName: settings.name,

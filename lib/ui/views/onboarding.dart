@@ -6,6 +6,7 @@ import 'package:little_drops/ui/shared/screen_util.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:little_drops/constants/route_names.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -44,7 +45,7 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     return Scaffold(
-      backgroundColor: AppColors().background2,
+      backgroundColor: AppColors().background,
       body: Stack(
         children: <Widget>[
           PageView(
@@ -102,6 +103,9 @@ class _OnboardingState extends State<Onboarding> {
             bottom: 30,
             right: 20,
             child: InkWell(
+              onTap: () {
+                Navigator.pushReplacementNamed(context, SignUpViewRoute);
+              },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
