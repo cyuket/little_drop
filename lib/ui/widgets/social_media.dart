@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
+import 'package:little_drops/ui/shared/ui_helpers.dart';
 
 class SocialMediaButton extends StatelessWidget {
   final String logoImage, name;
@@ -21,7 +22,7 @@ class SocialMediaButton extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          width: isSmall ? 163 : null,
+          width: halfScreenWidth(context) - 20,
           padding: EdgeInsets.all(8),
           height: 58,
           decoration: BoxDecoration(

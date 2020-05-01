@@ -15,6 +15,8 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   PageController _pageController;
+  static const _kDuration = const Duration(milliseconds: 300);
+  static const _kCurve = Curves.ease;
   int currentIndex = 0;
   bool isLast = false;
   onChangedFunction(int index) {
@@ -27,6 +29,10 @@ class _OnboardingState extends State<Onboarding> {
         isLast = false;
       }
     });
+  }
+
+  nextFunction() {
+    _pageController.nextPage(duration: _kDuration, curve: _kCurve);
   }
 
   @override
@@ -46,92 +52,118 @@ class _OnboardingState extends State<Onboarding> {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     return Scaffold(
       backgroundColor: AppColors().background,
-      body: Stack(
-        children: <Widget>[
-          PageView(
-            controller: _pageController,
-            onPageChanged: onChangedFunction,
-            children: <Widget>[
-              PageItem(
-                illustration: AppAsset().illustration2,
-                text1: "We make life easy and less stressful",
-                text2: 'We’ll handle your clothings, you can relax!',
-              ),
-              PageItem(
-                illustration: AppAsset().illustration2,
-                text1: "Clean and Crisp-looking Garment",
-                text2:
-                    'You do not need to worry about a chores-filled-weekend anymore.',
-              ),
-              PageItem(
-                illustration: AppAsset().illustration2,
-                text1: "Swift Delivery",
-                text2: 'Now relax, Let’s bring your clothes to you!',
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 60,
-            left: halfScreenWidth(context) - 20,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            PageView(
+              controller: _pageController,
+              onPageChanged: onChangedFunction,
               children: <Widget>[
-                Indicator(
-                  positionIndex: 0,
-                  currentIndex: currentIndex,
+                PageItem(
+                  illustration: AppAsset().illustration2,
+                  text1: "We make life easy and less stressful",
+                  text2: 'We’ll handle your clothings, you can relax!',
                 ),
-                SizedBox(
-                  width: 10,
+                PageItem(
+                  illustration: AppAsset().illustration2,
+                  text1: "Clean and Crisp-looking Garment",
+                  text2:
+                      'You do not need to worry about a chores-filled-weekend anymore.',
                 ),
-                Indicator(
-                  positionIndex: 1,
-                  currentIndex: currentIndex,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Indicator(
-                  positionIndex: 2,
-                  currentIndex: currentIndex,
+                PageItem(
+                  illustration: AppAsset().illustration2,
+                  text1: "Swift Delivery",
+                  text2: 'Now relax, Let’s bring your clothes to you!',
                 ),
               ],
             ),
-          ),
-          Positioned(
-            bottom: 30,
-            right: 20,
-            child: InkWell(
-              onTap: () {
-                Navigator.pushReplacementNamed(context, SignUpViewRoute);
-              },
+            Positioned(
+              right: 20,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Text(
-                      isLast ? 'let’s go!' : 'Skip',
-                      style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                            fontSize: 14, color: AppColors().textColor),
-                      ),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, SignUpViewRoute);
+                  },
+                  child: Text(
+                    !isLast ? "Skip" : "",
+                    style: GoogleFonts.lato(
+                      textStyle: TextStyle(
+                          fontSize: 14,
+                          color: AppColors().secondaryColor,
+                          fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(width: 5),
-                    isLast
-                        ? Icon(
-                            Icons.arrow_forward,
-                            color: AppColors().primaryColor,
-                          )
-                        : Container()
-                  ],
+                  ),
                 ),
               ),
             ),
-          )
-        ],
+            Positioned(
+              bottom: 60,
+              left: halfScreenWidth(context) - 20,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Indicator(
+                    positionIndex: 0,
+                    currentIndex: currentIndex,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Indicator(
+                    positionIndex: 1,
+                    currentIndex: currentIndex,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Indicator(
+                    positionIndex: 2,
+                    currentIndex: currentIndex,
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: InkWell(
+                onTap: () {
+                  isLast
+                      ? Navigator.pushReplacementNamed(context, SignUpViewRoute)
+                      : nextFunction();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Text(
+                        isLast ? 'let’s go!' : 'Next',
+                        style: GoogleFonts.lato(
+                          textStyle: TextStyle(
+                              fontSize: 14,
+                              color: AppColors().primaryColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      isLast
+                          ? Icon(
+                              Icons.arrow_forward,
+                              color: AppColors().primaryColor,
+                            )
+                          : Container()
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

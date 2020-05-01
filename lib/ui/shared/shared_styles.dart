@@ -16,7 +16,7 @@ BoxDecoration disabledFieldDecortaion = BoxDecoration(
 
 BoxDecoration buttonDecoration = BoxDecoration(
     border: Border.all(
-      color: AppColors().background2,
+      color: AppColors().background,
       width: 2,
     ),
     borderRadius: BorderRadius.circular(26));
