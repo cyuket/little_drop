@@ -31,9 +31,14 @@ const EdgeInsets largeFieldPadding =
     const EdgeInsets.symmetric(horizontal: 15, vertical: 15);
 
 // Text Variables
-const TextStyle buttonTitleTextStyle = const TextStyle(
-    fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white);
-const TextStyle mediumTextStyle =
+final TextStyle buttonTitleTextStyle =
+    TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: Colors.white);
+final TextStyle buttonTitleTextStyleBlack = TextStyle(
+  fontWeight: FontWeight.w500,
+  fontSize: 20,
+  color: AppColors().textColor,
+);
+final TextStyle mediumTextStyle =
     TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
 const TextStyle regularTextStyle = TextStyle(fontSize: 11, color: Colors.white);
 final TextStyle regularTextStyleBlack = GoogleFonts.roboto(

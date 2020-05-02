@@ -36,6 +36,7 @@ class SignUpView extends StatelessWidget {
           width: screenWidth(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Center(child: Image.asset(AppAsset().illustration4)),
               Padding(
@@ -47,102 +48,78 @@ class SignUpView extends StatelessWidget {
                           fontSize: 15, color: AppColors().textColor)),
                 ),
               ),
-              Text('Full Name:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
-              SizedBox(
-                height: 10,
-              ),
               InputField(
                 smallVersion: true,
                 controller: fullNameController,
                 placeholder: "Enter Full Name",
+                label: "Full Name",
               ),
-              Text('Email:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               InputField(
                 smallVersion: true,
                 controller: emailController,
-                placeholder: "Enter email",
+                placeholder: "youremail@email.com",
+                label: "Email",
               ),
-              Text('Phone Number:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               InputField(
                 smallVersion: true,
                 controller: phonNumberController,
-                placeholder: "Phone Number",
+                placeholder: "+234 xxx xxx xxxxx",
+                label: "Phone Number",
               ),
-              Text('Password:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
+
               InputField(
                 smallVersion: true,
                 controller: passwordController,
                 placeholder: "Password",
+                label: "Password",
                 password: true,
               ),
-              Text('Confirm:',
-                  style: GoogleFonts.lato(
-                      textStyle: TextStyle(
-                          fontSize: 13, color: AppColors().textColor))),
               SizedBox(
-                height: 10,
-              ),
-              InputField(
-                smallVersion: true,
-                controller: confirmPasswordController,
-                placeholder: "Confirm password",
-                password: true,
+                height: 20,
               ),
               BusyButton(title: 'Sign Up', onPressed: null),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Column(
-                  children: <Widget>[
-                    Center(
-                      child: Text('Or',
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(
-                                  fontSize: 14, color: AppColors().textColor))),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  SocialMediaButton(
-                    logoImage: AppAsset().google,
-                    name: 'Sign in with Google',
-                    isColor: true,
-                    isSmall: true,
-                  ),
-                  SizedBox(
-                    width: 40,
-                  ),
-                  SocialMediaButton(
-                    logoImage: AppAsset().facebook,
-                    color: AppColors().facebook,
-                    name: 'Sign in with Facebook',
-                    isSmall: true,
-                  )
-                ],
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(vertical: 20.0),
+              //   child: Column(
+              //     children: <Widget>[
+              //       Center(
+              //         child: Text('Or',
+              //             style: GoogleFonts.lato(
+              //                 textStyle: TextStyle(
+              //                     fontSize: 14, color: AppColors().textColor))),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Row(
+              //   mainAxisSize: MainAxisSize.max,
+              //   children: <Widget>[
+              //     SocialMediaButton(
+              //       logoImage: AppAsset().google,
+              //       name: 'Sign in with Google',
+              //       isColor: true,
+              //       isSmall: true,
+              //     ),
+              //     SizedBox(
+              //       width: 40,
+              //     ),
+              //     SocialMediaButton(
+              //       logoImage: AppAsset().facebook,
+              //       color: AppColors().facebook,
+              //       name: 'Sign in with Facebook',
+              //       isSmall: true,
+              //     )
+              //   ],
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(

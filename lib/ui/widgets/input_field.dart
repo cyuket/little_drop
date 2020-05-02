@@ -19,12 +19,14 @@ class InputField extends StatefulWidget {
   final FocusNode nextFocusNode;
   final TextInputAction textInputAction;
   final String additionalNote;
+  final String label;
   final Function(String) onChanged;
   final TextInputFormatter formatter;
 
   InputField(
       {@required this.controller,
       @required this.placeholder,
+      @required this.label,
       this.enterPressed,
       this.fieldFocusNode,
       this.nextFocusNode,
@@ -60,9 +62,9 @@ class _InputFieldState extends State<InputField> {
         Container(
           height: widget.smallVersion ? 44 : fieldHeight,
           alignment: Alignment.centerLeft,
-          padding: fieldPadding,
-          decoration:
-              widget.isReadOnly ? disabledFieldDecortaion : fieldDecoration,
+          // padding: fieldPadding,
+          // decoration:
+          //     widget.isReadOnly ? disabledFieldDecortaion : fieldDecoration,
           child: Row(
             children: <Widget>[
               Expanded(
@@ -87,31 +89,43 @@ class _InputFieldState extends State<InputField> {
                   },
                   obscureText: isPassword,
                   readOnly: widget.isReadOnly,
-                  decoration: InputDecoration.collapsed(
-                      hintText: widget.placeholder,
-                      // border: OutlineInputBorder(
-                      //   borderSide: BorderSide(
-                      //       color: AppColors().primaryColor, width: 1.0),
-                      // ),
-                      hintStyle:
-                          TextStyle(fontSize: widget.smallVersion ? 12 : 15)),
+                  decoration: InputDecoration(
+                    hintText: widget.placeholder,
+                    labelText: widget.label,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AppColors().primaryColor, width: 1.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: AppColors().primaryColor, width: 1.0),
+                    ),
+                    hintStyle:
+                        TextStyle(fontSize: widget.smallVersion ? 12 : 15),
+                    suffix: GestureDetector(
+                      onTap: () => setState(() {
+                        isPassword = !isPassword;
+                      }),
+                      child: widget.password
+                          ? Container(
+                              width: fieldHeight,
+                              height: fieldHeight,
+                              alignment: Alignment.center,
+                              child: Icon(
+                                isPassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : Container(
+                              width: fieldHeight,
+                              height: fieldHeight,
+                              alignment: Alignment.center,
+                            ),
+                    ),
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () => setState(() {
-                  isPassword = !isPassword;
-                }),
-                child: widget.password
-                    ? Container(
-                        width: fieldHeight,
-                        height: fieldHeight,
-                        alignment: Alignment.center,
-                        child: Icon(
-                          isPassword ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.grey,
-                        ),
-                      )
-                    : Container(),
               ),
             ],
           ),

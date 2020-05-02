@@ -6,4 +6,5 @@ class AppAsset {
   String onboardingArrow = 'assets/images/arrow.svg';
   String facebook = 'assets/images/facebook.png';
   String google = 'assets/images/google.png';
+  String logo = 'assets/images/logo.png';
 }

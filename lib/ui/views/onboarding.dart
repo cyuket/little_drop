@@ -83,7 +83,7 @@ class _OnboardingState extends State<Onboarding> {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, SignUpViewRoute);
+                    Navigator.pushReplacementNamed(context, SplitViewRoute);
                   },
                   child: Text(
                     !isLast ? "Skip" : "",
@@ -132,7 +132,7 @@ class _OnboardingState extends State<Onboarding> {
               child: InkWell(
                 onTap: () {
                   isLast
-                      ? Navigator.pushReplacementNamed(context, SignUpViewRoute)
+                      ? Navigator.pushReplacementNamed(context, SplitViewRoute)
                       : nextFunction();
                 },
                 child: Padding(

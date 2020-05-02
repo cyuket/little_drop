@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:little_drops/ui/views/onboarding.dart';
 import 'package:little_drops/ui/views/sign_up.dart';
 import 'package:little_drops/ui/views/login_view.dart';
+import 'package:little_drops/ui/views/split_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -22,13 +23,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         routeName: settings.name,
         viewToShow: SignUpView(),
       );
-    // case HomeViewRoute:
-    //   return _getPageRoute(
-    //     routeName: settings.name,
-    //     viewToShow: HomeContainer(
-    //       child: StoresView(),
-    //     ),
-    //   );
+    case SplitViewRoute:
+      return _getPageRoute(routeName: settings.name, viewToShow: SplitView());
     // case StoreViewRoute:
     //   return _getPageRoute(
     //     routeName: settings.name,
