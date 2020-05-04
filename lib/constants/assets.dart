@@ -7,4 +7,5 @@ class AppAsset {
   String facebook = 'assets/images/facebook.png';
   String google = 'assets/images/google.png';
   String logo = 'assets/images/logo.png';
+  String success = 'assets/images/success.png';
 }

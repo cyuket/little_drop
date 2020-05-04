@@ -8,6 +8,7 @@ import 'package:little_drops/ui/widgets/input_field.dart';
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/widgets/social_media.dart';
 import 'package:little_drops/constants/route_names.dart';
+import 'package:little_drops/ui/widgets/modal.dart';
 
 class SignUpView extends StatelessWidget {
   final emailController = TextEditingController();
@@ -86,7 +87,21 @@ class SignUpView extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              BusyButton(title: 'Sign Up', onPressed: null),
+              BusyButton(
+                  title: 'Sign Up',
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => CustomModal(
+                        message:
+                            "Yo! Yo!! Yo!!! You’ve successfully signed in!!! ",
+                        buttonText: "Continue",
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    );
+                  }),
               // Padding(
               //   padding: const EdgeInsets.symmetric(vertical: 20.0),
               //   child: Column(

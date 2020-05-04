@@ -46,7 +46,6 @@ class LoginView extends StatelessWidget {
                           fontSize: 15, color: AppColors().textColor)),
                 ),
               ),
-
               InputField(
                 smallVersion: true,
                 controller: emailController,
@@ -67,39 +66,6 @@ class LoginView extends StatelessWidget {
                 height: 20,
               ),
               BusyButton(title: 'Login', onPressed: null),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(vertical: 20.0),
-              //   child: Column(
-              //     children: <Widget>[
-              //       Center(
-              //         child: Text('Or',
-              //             style: GoogleFonts.lato(
-              //                 textStyle: TextStyle(
-              //                     fontSize: 14, color: AppColors().textColor))),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // Row(
-              //   mainAxisSize: MainAxisSize.max,
-              //   children: <Widget>[
-              //     SocialMediaButton(
-              //       logoImage: AppAsset().google,
-              //       name: 'Sign in with Google',
-              //       isColor: true,
-              //       isSmall: true,
-              //     ),
-              //     SizedBox(
-              //       width: 40,
-              //     ),
-              //     SocialMediaButton(
-              //       logoImage: AppAsset().facebook,
-              //       color: AppColors().facebook,
-              //       name: 'Sign in with Facebook',
-              //       isSmall: true,
-              //     )
-              //   ],
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(
