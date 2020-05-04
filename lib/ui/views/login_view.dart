@@ -6,7 +6,7 @@ import 'package:little_drops/ui/shared/screen_util.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/widgets/input_field.dart';
 import 'package:little_drops/ui/widgets/busy_button.dart';
-import 'package:little_drops/ui/widgets/social_media.dart';
+
 import 'package:little_drops/constants/route_names.dart';
 
 class LoginView extends StatelessWidget {

@@ -4,6 +4,7 @@ import 'package:little_drops/ui/views/onboarding.dart';
 import 'package:little_drops/ui/views/sign_up.dart';
 import 'package:little_drops/ui/views/login_view.dart';
 import 'package:little_drops/ui/views/split_view.dart';
+import 'package:little_drops/ui/views/reminder_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -33,11 +34,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //     ),
     //   );
 
-    // case StartUpViewRoute:
-    //   return _getPageRoute(
-    //     routeName: settings.name,
-    //     viewToShow: StartUpView(),
-    //   );
+    case ReminderViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: ReminderView(),
+      );
     // case ProductDetailRoute:
     //   return _getPageRoute(
     //     routeName: settings.name,

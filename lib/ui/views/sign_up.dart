@@ -92,12 +92,13 @@ class SignUpView extends StatelessWidget {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => CustomModal(
+                      builder: (BuildContext diaLogcontext) => CustomModal(
                         message:
                             "Yo! Yo!! Yo!!! You’ve successfully signed in!!! ",
                         buttonText: "Continue",
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.pop(diaLogcontext);
+                          Navigator.pushNamed(context, ReminderViewRoute);
                         },
                       ),
                     );

@@ -17,6 +17,7 @@ dependencies:
   cloud_firestore: ^0.13.4+2
   firebase_auth: ^0.15.5+3
   flutter_svg: ^0.17.4
+  grouped_buttons: ^1.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
