@@ -8,4 +8,8 @@ class AppAsset {
   String google = 'assets/images/google.png';
   String logo = 'assets/images/logo.png';
   String success = 'assets/images/success.png';
+  String washingAndIron = 'assets/images/icon1.png';
+  String ironing = 'assets/images/icon2.png';
+  String washing = 'assets/images/icon3.png';
+  String dryClean = 'assets/images/icon4.png';
 }
