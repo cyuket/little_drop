@@ -65,7 +65,9 @@ class LoginView extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              BusyButton(title: 'Login', onPressed: null),
+              BusyButton(
+                  title: 'Login',
+                  onPressed: () => Navigator.pushNamed(context, HomeViewRoute)),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(

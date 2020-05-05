@@ -5,6 +5,7 @@ import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/widgets/modal.dart';
+import 'package:little_drops/constants/route_names.dart';
 
 class ReminderView extends StatefulWidget {
   @override
@@ -87,7 +88,7 @@ class _ReminderViewState extends State<ReminderView> {
                         buttonText: "Take me home, baby!",
                         onTap: () {
                           Navigator.pop(diaLogcontext);
-                          // Navigator.pushNamed(context, ReminderViewRoute);
+                          Navigator.pushNamed(context, HomeViewRoute);
                         },
                       ),
                     );
