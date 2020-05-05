@@ -1,10 +1,12 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:little_drops/ui/views/home_view.dart';
 import 'package:little_drops/ui/views/onboarding.dart';
 import 'package:little_drops/ui/views/sign_up.dart';
 import 'package:little_drops/ui/views/login_view.dart';
 import 'package:little_drops/ui/views/split_view.dart';
 import 'package:little_drops/ui/views/reminder_view.dart';
+import 'package:little_drops/ui/shared/home_container.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -26,13 +28,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case SplitViewRoute:
       return _getPageRoute(routeName: settings.name, viewToShow: SplitView());
-    // case StoreViewRoute:
-    //   return _getPageRoute(
-    //     routeName: settings.name,
-    //     viewToShow: HomeContainer(
-    //       child: StoreView(),
-    //     ),
-    //   );
+    case HomeViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: HomeContainer(),
+      );
 
     case ReminderViewRoute:
       return _getPageRoute(
