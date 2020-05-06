@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/widgets/home_cards.dart';
 
@@ -14,15 +15,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: Text(
-          "Services",
-          style: GoogleFonts.lato(
-            textStyle: TextStyle(
-                fontSize: 20,
-                color: AppColors().textColor,
-                fontWeight: FontWeight.w500),
-          ),
-        ),
+        title: Text("Services", style: header),
       ),
       body: SafeArea(
         child: Column(

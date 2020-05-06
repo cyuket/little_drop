@@ -48,3 +48,7 @@ final TextStyle regularTextStyleBlack = GoogleFonts.roboto(
 
 final TextStyle textStyle =
     GoogleFonts.lato(textStyle: TextStyle(fontSize: 20));
+final TextStyle header = GoogleFonts.lato(
+  textStyle: TextStyle(
+      fontSize: 20, color: AppColors().textColor, fontWeight: FontWeight.w500),
+);

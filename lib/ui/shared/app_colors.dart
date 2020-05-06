@@ -7,4 +7,5 @@ class AppColors {
   Color inputColor = Color(0xff999999);
   Color facebook = Color(0xff3B5999);
   Color secondaryColor = Color(0xff39B347);
+  Color secTextcolor = Color(0xff746970);
 }

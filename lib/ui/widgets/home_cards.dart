@@ -4,8 +4,11 @@ import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 
 class HomeCards extends StatelessWidget {
-  const HomeCards(
-      {@required this.iconImage, @required this.name, this.onPressed});
+  const HomeCards({
+    @required this.iconImage,
+    @required this.name,
+    this.onPressed,
+  });
 
   final String iconImage, name;
   final Function onPressed;

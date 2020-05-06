@@ -12,4 +12,5 @@ class AppAsset {
   String ironing = 'assets/images/icon2.png';
   String washing = 'assets/images/icon3.png';
   String dryClean = 'assets/images/icon4.png';
+  String orderCheck = 'assets/images/orderCheck.png';
 }

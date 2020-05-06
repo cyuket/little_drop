@@ -1,6 +1,6 @@
 import 'package:little_drops/ui/views/home_view.dart';
-// import 'package:little_drops/ui/widgets/carousel.dart';
 import 'package:flutter/material.dart';
+import 'package:little_drops/ui/views/order_view.dart';
 import 'package:little_drops/ui/widgets/navbar_widget.dart';
 
 import 'app_colors.dart';
@@ -25,10 +25,7 @@ class _HomeContainerState extends State<HomeContainer> {
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       HomeView(),
-      Text(
-        'Index 1: Orders',
-        style: _textStyle,
-      ),
+      OrderView(),
       Text(
         'Index 2: Account',
         style: _textStyle,
@@ -49,7 +46,7 @@ class _HomeContainerState extends State<HomeContainer> {
         notchedShape: CircularNotchedRectangle(),
         onTabSelected: _onItemTapped,
         items: [
-          FABBottomAppBarItem(iconData: Icons.store, text: 'Stores'),
+          FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
           FABBottomAppBarItem(iconData: Icons.list, text: 'Orders'),
           FABBottomAppBarItem(iconData: Icons.person, text: 'Account'),
         ],
