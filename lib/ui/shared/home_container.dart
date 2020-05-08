@@ -1,3 +1,4 @@
+import 'package:little_drops/ui/views/account_view.dart';
 import 'package:little_drops/ui/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:little_drops/ui/views/order_view.dart';
@@ -26,10 +27,7 @@ class _HomeContainerState extends State<HomeContainer> {
     List<Widget> _widgetOptions = <Widget>[
       HomeView(),
       OrderView(),
-      Text(
-        'Index 2: Account',
-        style: _textStyle,
-      ),
+      AccountView()
       // Text(
       //   'Index 3: Settings',
       //   style: _textStyle,

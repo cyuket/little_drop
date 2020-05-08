@@ -52,3 +52,7 @@ final TextStyle header = GoogleFonts.lato(
   textStyle: TextStyle(
       fontSize: 20, color: AppColors().textColor, fontWeight: FontWeight.w500),
 );
+final TextStyle accountStyle = GoogleFonts.lato(
+  color: AppColors().textColor.withOpacity(0.6),
+  fontSize: 16,
+);
