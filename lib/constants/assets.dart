@@ -13,4 +13,13 @@ class AppAsset {
   String washing = 'assets/images/icon3.png';
   String dryClean = 'assets/images/icon4.png';
   String orderCheck = 'assets/images/orderCheck.png';
+
+//Icons for service sellections
+
+  String shirt = 'assets/images/shirt.png';
+  String blanket = 'assets/images/blanket.png';
+  String jacket = 'assets/images/jacket.png';
+  String trouser = 'assets/images/trouser.png';
+  String suit = 'assets/images/suit.png';
+  String shoe = 'assets/images/shoe.png';
 }

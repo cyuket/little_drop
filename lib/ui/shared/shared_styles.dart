@@ -56,3 +56,13 @@ final TextStyle accountStyle = GoogleFonts.lato(
   color: AppColors().textColor.withOpacity(0.6),
   fontSize: 16,
 );
+
+final TextStyle titleTextStyle = GoogleFonts.lato(
+  textStyle: TextStyle(fontSize: 24, color: AppColors().textColor),
+);
+final TextStyle subTitle = GoogleFonts.lato(
+  textStyle: TextStyle(
+    fontSize: 16,
+    color: AppColors().textColor.withOpacity(0.6),
+  ),
+);

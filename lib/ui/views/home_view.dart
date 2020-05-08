@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
+import 'package:little_drops/ui/views/selection_view.dart';
 import 'package:little_drops/ui/widgets/home_cards.dart';
 
 class HomeView extends StatelessWidget {
@@ -28,20 +28,11 @@ class HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    'Hello Michelle,',
-                    style: GoogleFonts.lato(
-                      textStyle:
-                          TextStyle(fontSize: 24, color: AppColors().textColor),
-                    ),
-                  ),
+                  Text('Hello Michelle,', style: titleTextStyle),
                   verticalSpace(20),
                   Text(
                     'What would you like us to do for you today?',
-                    style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                            fontSize: 16,
-                            color: AppColors().textColor.withOpacity(0.6))),
+                    style: subTitle,
                   ),
                   verticalSpace(20),
                 ],
@@ -61,6 +52,14 @@ class HomeView extends StatelessWidget {
                     HomeCards(
                       iconImage: AppAsset().washingAndIron,
                       name: "Wash and Iron",
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => SelectionView(
+                            title: "Wash and Iron",
+                          ),
+                        ),
+                      ),
                     ),
                     HomeCards(
                       iconImage: AppAsset().ironing,
