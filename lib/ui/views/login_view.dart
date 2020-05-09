@@ -47,7 +47,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               InputField(
-                smallVersion: true,
+                smallVersion: false,
                 controller: emailController,
                 label: "Email",
                 placeholder: "youremail@email.com",
@@ -56,7 +56,7 @@ class LoginView extends StatelessWidget {
                 height: 20,
               ),
               InputField(
-                smallVersion: true,
+                smallVersion: false,
                 controller: passwordController,
                 label: "Password",
                 placeholder: "Password",

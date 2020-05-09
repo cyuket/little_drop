@@ -22,6 +22,7 @@ class InputField extends StatefulWidget {
   final String label;
   final Function(String) onChanged;
   final TextInputFormatter formatter;
+  final int maxLines, maxLength;
 
   InputField(
       {@required this.controller,
@@ -33,6 +34,8 @@ class InputField extends StatefulWidget {
       this.additionalNote,
       this.onChanged,
       this.formatter,
+      this.maxLength,
+      this.maxLines,
       this.validationMessage,
       this.textInputAction = TextInputAction.next,
       this.textInputType = TextInputType.text,
@@ -60,7 +63,7 @@ class _InputFieldState extends State<InputField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          height: widget.smallVersion ? 44 : fieldHeight,
+          height: widget.smallVersion ? 80 : fieldHeight,
           alignment: Alignment.centerLeft,
           // padding: fieldPadding,
           // decoration:

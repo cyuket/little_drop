@@ -50,7 +50,7 @@ class SignUpView extends StatelessWidget {
                 ),
               ),
               InputField(
-                smallVersion: true,
+                smallVersion: false,
                 controller: fullNameController,
                 placeholder: "Enter Full Name",
                 label: "Full Name",
@@ -59,7 +59,7 @@ class SignUpView extends StatelessWidget {
                 height: 20,
               ),
               InputField(
-                smallVersion: true,
+                smallVersion: false,
                 controller: emailController,
                 placeholder: "youremail@email.com",
                 label: "Email",
@@ -68,7 +68,7 @@ class SignUpView extends StatelessWidget {
                 height: 20,
               ),
               InputField(
-                smallVersion: true,
+                smallVersion: false,
                 controller: phonNumberController,
                 placeholder: "+234 xxx xxx xxxxx",
                 label: "Phone Number",
@@ -78,7 +78,7 @@ class SignUpView extends StatelessWidget {
               ),
 
               InputField(
-                smallVersion: true,
+                smallVersion: false,
                 controller: passwordController,
                 placeholder: "Password",
                 label: "Password",
