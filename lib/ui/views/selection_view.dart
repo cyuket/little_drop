@@ -40,11 +40,12 @@ class _SelectionViewState extends State<SelectionView> {
             ],
           ),
           leading: IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.arrow_back,
-                color: AppColors().primaryColor,
-              )),
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.arrow_back,
+              color: AppColors().primaryColor,
+            ),
+          ),
           elevation: 0,
         ),
         body: SafeArea(
