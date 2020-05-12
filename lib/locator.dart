@@ -14,5 +14,4 @@ void setupLocator() {
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => FirestoreService());
   locator.registerLazySingleton(() => ItemSelectionServices());
-  locator.registerLazySingleton(() => ItemSelectionViewModel());
 }

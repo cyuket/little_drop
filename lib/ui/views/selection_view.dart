@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
-import 'package:little_drops/ui/views/base_view.dart';
+
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/shared/screen_util.dart';
 import 'package:little_drops/ui/widgets/input_field.dart';
 import 'package:little_drops/ui/widgets/selected_item.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/viewModel/selection_item_view_model.dart';
+import 'package:provider_architecture/provider_architecture.dart';
 
 class SelectionView extends StatefulWidget {
   final String title;
@@ -25,7 +25,9 @@ class _SelectionViewState extends State<SelectionView> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
 
-    return BaseView<ItemSelectionViewModel>(
+    return ViewModelProvider<ItemSelectionViewModel>.withConsumer(
+      viewModelBuilder: () => ItemSelectionViewModel(),
+      //  onModelReady: (model) => model.initialise(),
       builder: (context, data, child) => Scaffold(
         backgroundColor: AppColors().background,
         appBar: AppBar(
