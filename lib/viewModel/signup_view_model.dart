@@ -4,7 +4,7 @@ import 'package:little_drops/services/authentication_service.dart';
 import 'package:little_drops/services/dialog_service.dart';
 import 'package:little_drops/services/navigation_service.dart';
 import 'package:flutter/foundation.dart';
-
+import 'package:flutter/material.dart';
 import 'base_model.dart';
 
 class SignUpViewModel extends BaseModel {
@@ -21,24 +21,27 @@ class SignUpViewModel extends BaseModel {
     notifyListeners();
   }
 
-  Future signUp({
-    @required String email,
-    @required String password,
-    @required String fullName,
-  }) async {
+  Future signUp(
+      {@required String email,
+      @required String password,
+      @required String fullName,
+      @required String phoneNumber}) async {
     setBusy(true);
 
     var result = await _authenticationService.signUpWithEmail(
         email: email,
         password: password,
         fullName: fullName,
-        role: _selectedRole);
+        phoneNumber: phoneNumber);
 
     setBusy(false);
 
     if (result is bool) {
       if (result) {
-        _navigationService.clearLastAndNavigateTo(HomeViewRoute);
+        await _dialogService.showDialog(
+          title: '',
+          description: '',
+        );
       } else {
         await _dialogService.showDialog(
           title: 'Sign Up Failure',

@@ -15,6 +15,10 @@ class DialogService {
     _showDialogListener = showDialogListener;
   }
 
+  void registerSuccess(Function(DialogRequest) showDialogListener) {
+    _showDialogListener = showDialogListener;
+  }
+
   /// Calls the dialog listener and returns a Future that will wait for dialogComplete.
   Future<DialogResponse> showDialog({
     String title,
@@ -29,6 +33,11 @@ class DialogService {
     ));
     return _dialogCompleter.future;
   }
+
+  // void successRegister() {
+  //   _dialogCompleter = Completer<dynamic>();
+  //   _showDialogListener();
+  // }
 
   /// Shows a confirmation dialog
   Future<DialogResponse> showConfirmationDialog(
