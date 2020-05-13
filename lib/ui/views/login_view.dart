@@ -94,12 +94,14 @@ class LoginView extends StatelessWidget {
                               Navigator.pushReplacementNamed(
                                   context, SignUpViewRoute);
                             },
-                            child: Text('Signup',
-                                style: GoogleFonts.lato(
-                                  textStyle: TextStyle(
-                                      fontSize: 12,
-                                      color: AppColors().primaryColor),
-                                )),
+                            child: Text(
+                              'Signup',
+                              style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: AppColors().primaryColor),
+                              ),
+                            ),
                           )
                         ],
                       ),

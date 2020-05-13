@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Open Sans',
             ),
       ),
-      home: StartUpView(),
-      initialRoute: OnboardingRoute,
+      // home: StartUpView(),
+      initialRoute: StartUpViewRoute,
       onGenerateRoute: generateRoute,
     );
   }
