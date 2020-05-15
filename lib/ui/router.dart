@@ -1,7 +1,8 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
-import 'package:little_drops/ui/views/home_view.dart';
+
 import 'package:little_drops/ui/views/onboarding.dart';
+import 'package:little_drops/ui/views/pick_location_view.dart';
 import 'package:little_drops/ui/views/sign_up.dart';
 import 'package:little_drops/ui/views/login_view.dart';
 import 'package:little_drops/ui/views/split_view.dart';
@@ -11,6 +12,11 @@ import 'package:little_drops/ui/views/startup_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case StartUpViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: StartUpView(),
+      );
     case OnboardingRoute:
       return _getPageRoute(
         routeName: settings.name,
@@ -27,6 +33,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         routeName: settings.name,
         viewToShow: SignUpView(),
       );
+    case ReminderViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: ReminderView(),
+      );
+
     case SplitViewRoute:
       return _getPageRoute(routeName: settings.name, viewToShow: SplitView());
     case HomeViewRoute:
@@ -35,15 +47,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         viewToShow: HomeContainer(),
       );
 
-    case ReminderViewRoute:
+    case PickUpLocationRoute:
       return _getPageRoute(
         routeName: settings.name,
-        viewToShow: ReminderView(),
-      );
-    case StartUpViewRoute:
-      return _getPageRoute(
-        routeName: settings.name,
-        viewToShow: StartUpView(),
+        viewToShow: PickUpLocation(),
       );
 
     default:

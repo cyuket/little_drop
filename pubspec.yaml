@@ -18,6 +18,9 @@ dependencies:
   firebase_auth: ^0.15.5+3
   flutter_svg: ^0.17.4
   grouped_buttons: ^1.0.4
+  google_maps_flutter: ^0.5.27+3
+  geolocator: ^5.3.1
+  location: ^3.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

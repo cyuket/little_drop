@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
@@ -154,8 +155,11 @@ class _SelectionViewState extends State<SelectionView> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child:
-                          BusyButton(title: "Add to basket", onPressed: null),
+                      child: BusyButton(
+                          title: "Add to basket",
+                          onPressed: () {
+                            Navigator.pushNamed(context, PickUpLocationRoute);
+                          }),
                     )
                   ],
                 ),

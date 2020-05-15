@@ -24,11 +24,11 @@ class _StartUpViewState extends State<StartUpView>
     super.initState();
 
     controller =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
+        AnimationController(duration: Duration(seconds: 2), vsync: this);
     animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
     // animation = ColorTween(begin: Colors.blueGrey, end: AppColors().background)
     //     .animate(controller);
-    controller.forward();
+    controller.reverse(from: 1);
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller.reverse(from: 1);
@@ -62,7 +62,7 @@ class _StartUpViewState extends State<StartUpView>
                 children: <Widget>[
                   Container(
                     width: 300,
-                    height: 300,
+                    height: animation.value * 100,
                     child: Image.asset(AppAsset().logo),
                   ),
                   verticalSpace(20),
