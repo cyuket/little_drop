@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:little_drops/ui/shared/app_colors.dart';
+import 'package:little_drops/ui/shared/shared_styles.dart';
+import 'package:little_drops/ui/shared/ui_helpers.dart';
+import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:location/location.dart';
 
 class PickUpLocation extends StatefulWidget {
@@ -29,17 +33,6 @@ class _PickUpLocationState extends State<PickUpLocation> {
 
   Future<void> getCurrentLocation() async {
     try {
-      // print("jsksksk");
-      // Position position = await Geolocator()
-      //     .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-      // print(position);
-      // setState(() {
-      //   latitude = position.latitude;
-      //   longitude = position.longitude;
-
-      // });
-
 //New Codeeeeeeeeeeeeeeeeee
 
       var location = await _location.getLocation();
@@ -76,7 +69,7 @@ class _PickUpLocationState extends State<PickUpLocation> {
       marker = Marker(
         markerId: MarkerId("My Location"),
         position: latLng,
-        rotation: locationData.heading,
+        rotation: locationData.altitude,
         draggable: false,
         flat: false,
         // anchor: Offset(0.5, 0.5),
@@ -115,11 +108,78 @@ class _PickUpLocationState extends State<PickUpLocation> {
         title: Text('Maps Sample App'),
         backgroundColor: Colors.green[700],
       ),
-      body: GoogleMap(
-          mapType: MapType.normal,
-          onMapCreated: _onMapCreated,
-          markers: Set.of((marker != null) ? [marker] : []),
-          initialCameraPosition: initialLocation),
+      body: Stack(
+        children: <Widget>[
+          GoogleMap(
+            mapType: MapType.normal,
+            onMapCreated: _onMapCreated,
+            markers: Set.of((marker != null) ? [marker] : []),
+            initialCameraPosition: initialLocation,
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              width: screenWidth(context),
+              height: 195,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Where would you like us to pick your clothes?",
+                    style: mapStyle,
+                  ),
+                  verticalSpace(15),
+                  Card(
+                    color: Colors.white,
+                    elevation: 1,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          height: 48,
+                          width: screenWidth(context) - 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border:
+                                Border.all(color: Color(0xffDADADA), width: 1),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.search,
+                                color: Color(0xffDADADA),
+                              ),
+                              horizontalSpaceSmall,
+                              Expanded(
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                      hintText: "Search pickup location",
+                                      hintStyle: TextStyle(fontSize: 15),
+                                      border: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      contentPadding: EdgeInsets.all(10)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  verticalSpace(15),
+                  BusyButton(
+                    onPressed: null,
+                    title: "Next",
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
