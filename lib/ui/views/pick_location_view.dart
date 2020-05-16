@@ -105,8 +105,15 @@ class _PickUpLocationState extends State<PickUpLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Maps Sample App'),
-        backgroundColor: Colors.green[700],
+        elevation: 0,
+        backgroundColor: AppColors().background,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back,
+            color: AppColors().primaryColor,
+          ),
+        ),
       ),
       body: Stack(
         children: <Widget>[
