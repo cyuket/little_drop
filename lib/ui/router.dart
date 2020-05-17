@@ -1,8 +1,8 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
-
 import 'package:little_drops/ui/views/onboarding.dart';
 import 'package:little_drops/ui/views/pick_date_view.dart';
+import 'package:little_drops/ui/views/pick_destination_view.dart';
 import 'package:little_drops/ui/views/pick_location_view.dart';
 import 'package:little_drops/ui/views/sign_up.dart';
 import 'package:little_drops/ui/views/login_view.dart';
@@ -57,6 +57,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: PickDateView(),
+      );
+    case DestinationLocationRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: DestinationLocation(),
       );
 
     default:

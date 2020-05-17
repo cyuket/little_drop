@@ -7,5 +7,6 @@ const String SplitViewRoute = "SplitView";
 const String ReminderViewRoute = "ReminderView";
 const String PickUpLocationRoute = "PickUpLocation";
 const String PickUpDateViewRoute = "PickDateView";
+const String DestinationLocationRoute = "DestinationLocation";
 
 // Generate the views here
