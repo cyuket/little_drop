@@ -60,6 +60,15 @@ final TextStyle mapStyle = GoogleFonts.lato(
   color: AppColors().textColor,
   fontSize: 14,
 );
+final TextStyle amountStyle = GoogleFonts.lato(
+  color: AppColors().textColor.withOpacity(0.6),
+  fontSize: 14,
+);
+final TextStyle amountBoldStyle = GoogleFonts.lato(
+  color: AppColors().textColor,
+  fontWeight: FontWeight.bold,
+  fontSize: 14,
+);
 
 final TextStyle titleTextStyle = GoogleFonts.lato(
   textStyle: TextStyle(fontSize: 24, color: AppColors().textColor),

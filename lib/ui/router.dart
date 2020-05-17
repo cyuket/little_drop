@@ -1,5 +1,6 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:little_drops/ui/views/confirm_order.dart';
 import 'package:little_drops/ui/views/onboarding.dart';
 import 'package:little_drops/ui/views/pick_date_view.dart';
 import 'package:little_drops/ui/views/pick_destination_view.dart';
@@ -62,6 +63,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: DestinationLocation(),
+      );
+    case ConfirmOrderRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: ConfirmOrder(),
       );
 
     default:

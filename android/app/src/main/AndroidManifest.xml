@@ -11,10 +11,10 @@
         android:label="little_drops"
         android:icon="@mipmap/ic_launcher">
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyDhr7IR9TzalQUQK-fRHEs8psiTsIZy8Jc"/>
         <!-- <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="YOUR-KEY-HERE"/> -->
+               android:value="AIzaSyDhr7IR9TzalQUQK-fRHEs8psiTsIZy8Jc"/> -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="YOUR-KEY-HERE"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

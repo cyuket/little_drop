@@ -8,5 +8,6 @@ const String ReminderViewRoute = "ReminderView";
 const String PickUpLocationRoute = "PickUpLocation";
 const String PickUpDateViewRoute = "PickDateView";
 const String DestinationLocationRoute = "DestinationLocation";
+const String ConfirmOrderRoute = "ConfirmOrder";
 
 // Generate the views here

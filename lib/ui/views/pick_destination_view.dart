@@ -180,7 +180,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
                   verticalSpace(15),
                   BusyButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, PickUpDateViewRoute);
+                      Navigator.pushNamed(context, ConfirmOrderRoute);
                     },
                     title: "Next",
                   )
