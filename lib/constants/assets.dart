@@ -22,4 +22,9 @@ class AppAsset {
   String trouser = 'assets/images/trouser.png';
   String suit = 'assets/images/suit.png';
   String shoe = 'assets/images/shoe.png';
+
+  // Payment Icons
+
+  String card = 'assets/images/card.png';
+  String buy = 'assets/images/buy.png';
 }

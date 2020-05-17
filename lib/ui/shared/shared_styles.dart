@@ -56,6 +56,10 @@ final TextStyle accountStyle = GoogleFonts.lato(
   color: AppColors().textColor.withOpacity(0.6),
   fontSize: 16,
 );
+final TextStyle reqular = GoogleFonts.lato(
+  color: AppColors().textColor,
+  fontSize: 16,
+);
 final TextStyle mapStyle = GoogleFonts.lato(
   color: AppColors().textColor,
   fontSize: 14,

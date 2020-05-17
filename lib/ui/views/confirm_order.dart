@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
@@ -148,7 +149,11 @@ class ConfirmOrder extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20.0),
-                          child: BusyButton(title: "Comfirm", onPressed: null),
+                          child: BusyButton(
+                            title: "Comfirm",
+                            onPressed: () => Navigator.pushNamed(
+                                context, PaymentMethodRoute),
+                          ),
                         )
                       ],
                     ),
