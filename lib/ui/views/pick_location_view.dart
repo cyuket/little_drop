@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
@@ -178,7 +179,9 @@ class _PickUpLocationState extends State<PickUpLocation> {
                   ),
                   verticalSpace(15),
                   BusyButton(
-                    onPressed: null,
+                    onPressed: () {
+                      Navigator.pushNamed(context, PickUpDateViewRoute);
+                    },
                     title: "Next",
                   )
                 ],
