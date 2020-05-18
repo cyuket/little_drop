@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
@@ -86,7 +87,11 @@ class CardAddingView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: BusyButton(title: "Proceed", onPressed: null),
+                child: BusyButton(
+                  title: "Proceed",
+                  onPressed: () =>
+                      Navigator.pushNamed(context, OrderSummaryRoute),
+                ),
               )
             ],
           ),

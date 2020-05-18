@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
@@ -7,8 +6,10 @@ import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/widgets/selected_item.dart';
 import 'package:little_drops/ui/shared/screen_util.dart';
+import 'package:little_drops/ui/widgets/total_widget.dart';
 import 'package:little_drops/viewModel/selection_item_view_model.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class ConfirmOrder extends StatelessWidget {
@@ -99,33 +100,9 @@ class ConfirmOrder extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Laundry fee",
-                              style: amountStyle,
-                            ),
-                            Text(
-                              "${NumberFormat.currency(locale: "en_US", symbol: "₦").format(amount)}",
-                              style: amountStyle,
-                            ),
-                          ],
-                        ),
+                        TotalWidget(amount: amount, title: "Laundry fee"),
                         verticalSpace(20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Delivery fee",
-                              style: amountStyle,
-                            ),
-                            Text(
-                              "${NumberFormat.currency(locale: "en_US", symbol: "₦").format(delivery)}",
-                              style: amountStyle,
-                            ),
-                          ],
-                        ),
+                        TotalWidget(amount: delivery, title: "Delivery fee"),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0),
                           child: Divider(
@@ -134,18 +111,11 @@ class ConfirmOrder extends StatelessWidget {
                             color: Color.fromRGBO(198, 198, 198, 0.7),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Total fee",
-                              style: mapStyle,
-                            ),
-                            Text(
-                              "${NumberFormat.currency(locale: "en_US", symbol: "₦").format(total)}",
-                              style: amountBoldStyle,
-                            ),
-                          ],
+                        TotalWidget(
+                          amount: total,
+                          title: "Total fee",
+                          bold: true,
+                          textStyle: amountBoldStyle,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20.0),
