@@ -1,16 +1,11 @@
 # little_drops
 
-A new Flutter project.
+This is An App that provides Laundry Sevices to users at the comfort of their home.
 
-## Getting Started
+## Screens
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![alt text](assets/screenshort/laundry1.png?raw=true "Title")
+![alt text](assets/screenshort/laundry2.png?raw=true "Title")
+![alt text](assets/screenshort/laundry3.png?raw=true "Title")
+![alt text](assets/screenshort/laundry4.png?raw=true "Title")
+![alt text](assets/screenshort/laundry5.png?raw=true "Title")
