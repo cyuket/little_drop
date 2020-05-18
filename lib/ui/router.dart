@@ -1,5 +1,6 @@
 import 'package:little_drops/constants/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:little_drops/ui/views/card_adding_view.dart';
 import 'package:little_drops/ui/views/confirm_order.dart';
 import 'package:little_drops/ui/views/onboarding.dart';
 import 'package:little_drops/ui/views/payment_method_view.dart';
@@ -74,6 +75,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: PaymentMethodView(),
+      );
+
+    case CardAddingRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: CardAddingView(),
       );
 
     default:

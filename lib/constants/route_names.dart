@@ -10,5 +10,6 @@ const String PickUpDateViewRoute = "PickDateView";
 const String DestinationLocationRoute = "DestinationLocation";
 const String ConfirmOrderRoute = "ConfirmOrder";
 const String PaymentMethodRoute = "PaymentMethod";
+const String CardAddingRoute = "CardAddingView";
 
 // Generate the views here

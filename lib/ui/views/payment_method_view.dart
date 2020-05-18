@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:little_drops/constants/assets.dart';
+import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
@@ -36,7 +37,7 @@ class PaymentMethodView extends StatelessWidget {
               PaymentCard(
                 iconString: AppAsset().card,
                 title: "Pay with card",
-                onTap: null,
+                onTap: () => Navigator.pushNamed(context, CardAddingRoute),
               ),
               PaymentCard(
                 iconString: AppAsset().buy,
@@ -64,6 +65,7 @@ class PaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: Container(

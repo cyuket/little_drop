@@ -21,7 +21,7 @@ class InputField extends StatefulWidget {
   final String additionalNote;
   final String label;
   final Function(String) onChanged;
-  final TextInputFormatter formatter;
+  final List<TextInputFormatter> formatter;
   final int maxLines, maxLength;
 
   InputField(
@@ -49,7 +49,7 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   bool isPassword;
-  double fieldHeight = 55;
+  double fieldHeight = 48;
 
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _InputFieldState extends State<InputField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-          height: widget.smallVersion ? 80 : fieldHeight,
+          height: widget.smallVersion ? 80 : 48,
           alignment: Alignment.centerLeft,
           // padding: fieldPadding,
           // decoration:
@@ -78,7 +78,7 @@ class _InputFieldState extends State<InputField> {
                   textInputAction: widget.textInputAction,
                   onChanged: widget.onChanged,
                   inputFormatters:
-                      widget.formatter != null ? [widget.formatter] : null,
+                      widget.formatter != null ? widget.formatter : null,
                   onEditingComplete: () {
                     if (widget.enterPressed != null) {
                       FocusScope.of(context).requestFocus(FocusNode());
@@ -97,12 +97,18 @@ class _InputFieldState extends State<InputField> {
                     labelText: widget.label,
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
-                          color: AppColors().primaryColor, width: 1.0),
+                          color: AppColors().borderColor, width: 1.0),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
+                          color: AppColors().borderColor, width: 1.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
                           color: AppColors().primaryColor, width: 2.0),
                     ),
+                    labelStyle:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     hintStyle:
                         TextStyle(fontSize: widget.smallVersion ? 12 : 15),
                     suffix: GestureDetector(
