@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:intl/intl.dart';
+import 'package:little_drops/ui/shared/ui_helpers.dart';
 
 class TimeAndDate extends StatelessWidget {
   const TimeAndDate({
@@ -17,7 +18,6 @@ class TimeAndDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (time != null) {}
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: Row(
@@ -26,7 +26,7 @@ class TimeAndDate extends StatelessWidget {
           InkWell(
             onTap: handleDate,
             child: Container(
-              width: 170,
+              width: halfScreenWidth(context) - 30,
               height: 48,
               padding: EdgeInsets.only(left: 10, top: 15),
               decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class TimeAndDate extends StatelessWidget {
           InkWell(
             onTap: handleTime,
             child: Container(
-              width: 170,
+              width: halfScreenWidth(context) - 30,
               height: 48,
               padding: EdgeInsets.only(left: 10, top: 15),
               decoration: BoxDecoration(
