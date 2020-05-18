@@ -21,7 +21,7 @@ class ConfirmOrder extends StatelessWidget {
         builder: (context, data, child) {
           double amount = 0;
           double delivery = 1000;
-          for (var item in data.items) {
+          for (var item in data.selectedItems) {
             amount = amount + item.washingAndIronningPrice;
           }
           double total = amount + delivery;
