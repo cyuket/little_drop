@@ -9,6 +9,8 @@ import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class CardAddingView extends StatelessWidget {
   final cardNumberController = TextEditingController();
+  final cardExpiryController = TextEditingController();
+  final cardCvvController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class CardAddingView extends StatelessWidget {
                         Container(
                           width: halfScreenWidth(context) - 30,
                           child: InputField(
-                            controller: cardNumberController,
+                            controller: cardExpiryController,
                             placeholder: "MM/YY",
                             label: "Expiry Date",
                             formatter: [CreditCardExpirationDateFormatter()],
@@ -74,7 +76,7 @@ class CardAddingView extends StatelessWidget {
                         Container(
                           width: halfScreenWidth(context) - 30,
                           child: InputField(
-                            controller: cardNumberController,
+                            controller: cardCvvController,
                             placeholder: "000",
                             label: "CVV",
                             formatter: [CreditCardCvcInputFormatter()],
