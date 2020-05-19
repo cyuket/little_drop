@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:little_drops/constants/route_names.dart';
+import 'package:little_drops/models/services_model.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
-
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/shared/screen_util.dart';
 import 'package:little_drops/ui/widgets/input_field.dart';
 import 'package:little_drops/ui/widgets/selected_item.dart';
-import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/viewModel/selection_item_view_model.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
-class SelectionView extends StatefulWidget {
-  final String title;
-  SelectionView({this.title});
-  @override
-  _SelectionViewState createState() => _SelectionViewState();
-}
+class SelectionView extends StatelessWidget {
+  final ServiceModel services;
 
-class _SelectionViewState extends State<SelectionView> {
+  SelectionView({
+    @required this.services,
+  });
+
   final message = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
-
+    ServiceModel service = services;
     return ViewModelProvider<ItemSelectionViewModel>.withConsumer(
       viewModelBuilder: () => ItemSelectionViewModel(),
       //  onModelReady: (model) => model.initialise(),
@@ -65,10 +64,10 @@ class _SelectionViewState extends State<SelectionView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(widget.title, style: titleTextStyle),
+                          Text(service.title, style: titleTextStyle),
                           verticalSpace(20),
                           Text(
-                            'You can select from the different kinds of clothes you’d like us to wash for you.',
+                            'You can select from the different kinds of clothes you’d like us to ${service.title} for you.',
                             style: subTitle,
                           ),
                           verticalSpace(20),
@@ -88,14 +87,16 @@ class _SelectionViewState extends State<SelectionView> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
-                              data.addToSelectedItemList(data.items[index]);
+                              data.addToSelectedItemList(
+                                service.items[index],
+                              );
                             },
                             child: ItemWidget(
-                                iconUrl: data.items[index].iconUrl,
-                                title: data.items[index].title),
+                                iconUrl: service.items[index].iconUrl,
+                                title: service.items[index].title),
                           );
                         },
-                        itemCount: data.items.length,
+                        itemCount: service.items.length,
                       ),
                     ),
                     verticalSpace(10),
@@ -142,21 +143,9 @@ class _SelectionViewState extends State<SelectionView> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 20),
-                      child: InputField(
-                        controller: message,
-                        label: "Extra Note",
-                        placeholder:
-                            "Kindly tell us if there’s anything you want us to look out for on your clothes. ",
-                        textInputType: TextInputType.multiline,
-                        smallVersion: true,
-                      ),
-                    ),
-                    Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: BusyButton(
-                          title: "Add to basket",
+                          title: "Proceed",
                           onPressed: () {
                             Navigator.pushNamed(context, PickUpLocationRoute);
                           }),

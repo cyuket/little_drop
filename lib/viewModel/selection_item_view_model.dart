@@ -1,6 +1,5 @@
 import 'base_model.dart';
 import 'package:little_drops/services/item_selection_services.dart';
-import 'package:flutter/foundation.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/locator.dart';
 
@@ -9,7 +8,7 @@ class ItemSelectionViewModel extends BaseModel {
       locator<ItemSelectionServices>();
 
   // getting all Items
-  List<ItemModel> get items => _itemSelectionServices.items;
+  // List<ItemModel> get items => _itemSelectionServices.items;
 
   // getting selected Items
 

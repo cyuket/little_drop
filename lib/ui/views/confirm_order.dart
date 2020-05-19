@@ -23,7 +23,7 @@ class ConfirmOrder extends StatelessWidget {
           double amount = 0;
           double delivery = 1000;
           for (var item in data.selectedItems) {
-            amount = amount + item.washingAndIronningPrice;
+            amount = amount + 200;
           }
           double total = amount + delivery;
           return Scaffold(

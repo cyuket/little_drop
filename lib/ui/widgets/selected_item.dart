@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
+import 'package:intl/intl.dart';
 
 class SelectedItem extends StatelessWidget {
   final ItemModel item;
@@ -35,13 +36,21 @@ class SelectedItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "₦${item.washingPrice} per ${item.title}",
+                    "{${NumberFormat.currency(locale: "en_US", symbol: "₦").format(item.pricePerItem)} per ${item.title}",
                     style: GoogleFonts.lato(
                       color: AppColors().textColor.withOpacity(0.6),
                       fontSize: 12,
                     ),
                   )
                 ],
+              ),
+              Text(
+                "${NumberFormat.currency(locale: "en_US", symbol: "₦").format(item.totalPrice)}",
+                style: GoogleFonts.lato(
+                  color: AppColors().textColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
               ),
               Row(
                 children: <Widget>[
