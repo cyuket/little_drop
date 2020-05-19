@@ -27,4 +27,7 @@ class AppAsset {
 
   String card = 'assets/images/card.png';
   String buy = 'assets/images/buy.png';
+
+// order summary
+  static String orderBan = 'assets/images/orderBan.png';
 }

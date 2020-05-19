@@ -96,9 +96,9 @@ class _DestinationLocationState extends State<DestinationLocation> {
   @override
   void dispose() {
     // TODO: implement dispose
-    if (_locationSubscription != null) {
-      _locationSubscription.cancel();
-    }
+
+    _locationSubscription.cancel();
+
     super.dispose();
   }
 

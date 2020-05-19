@@ -9,4 +9,5 @@ class AppColors {
   Color secondaryColor = Color(0xff39B347);
   Color secTextcolor = Color(0xff746970);
   Color borderColor = Color(0xffcccccc);
+  static Color orderTextColor = Color.fromRGBO(32, 0, 21, 0.7);
 }

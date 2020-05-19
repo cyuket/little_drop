@@ -77,6 +77,12 @@ final TextStyle amountBoldStyle = GoogleFonts.lato(
 final TextStyle titleTextStyle = GoogleFonts.lato(
   textStyle: TextStyle(fontSize: 24, color: AppColors().textColor),
 );
+final TextStyle progressOrder = GoogleFonts.lato(
+  textStyle: TextStyle(
+    fontSize: 12,
+    color: AppColors.orderTextColor,
+  ),
+);
 final TextStyle subTitle = GoogleFonts.lato(
   textStyle: TextStyle(
     fontSize: 16,

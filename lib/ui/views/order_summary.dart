@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
+import 'package:little_drops/ui/views/order_progress_view.dart';
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/widgets/total_widget.dart';
 
@@ -183,7 +184,12 @@ class OrderSummaryView extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
                 child: BusyButton(
                   title: "Pay Now",
-                  onPressed: null,
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OrderProgressView(),
+                    ),
+                  ),
                 ),
               ),
             ],

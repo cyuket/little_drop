@@ -96,9 +96,9 @@ class _PickUpLocationState extends State<PickUpLocation> {
   @override
   void dispose() {
     // TODO: implement dispose
-    if (_locationSubscription != null) {
-      _locationSubscription.cancel();
-    }
+
+    _locationSubscription.cancel();
+
     super.dispose();
   }
 
