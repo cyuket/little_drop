@@ -32,15 +32,6 @@ class SelectionView extends StatelessWidget {
         backgroundColor: AppColors().background,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.shopping_basket),
-                onPressed: null,
-              )
-            ],
-          ),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: Icon(
