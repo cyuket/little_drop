@@ -7,13 +7,13 @@ import 'package:intl/intl.dart';
 
 class SelectedItem extends StatelessWidget {
   final ItemModel item;
-  final Function incrementQty, decrementQty;
+  final Function incrementQty, decrementQty, removeItem;
   const SelectedItem({
     @required this.item,
     @required this.decrementQty,
     @required this.incrementQty,
-    Key key,
-  }) : super(key: key);
+    @required this.removeItem,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +97,21 @@ class SelectedItem extends StatelessWidget {
                       ),
                     ),
                   ),
+                  horizontalSpaceMedium,
+                  InkWell(
+                    onTap: removeItem,
+                    child: Container(
+                      height: 24,
+                      width: 23,
+                      child: Text(
+                        'X',
+                        style: TextStyle(
+                            color: AppColors().primaryColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ],

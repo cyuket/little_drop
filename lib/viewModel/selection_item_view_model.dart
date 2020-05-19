@@ -22,6 +22,12 @@ class ItemSelectionViewModel extends BaseModel {
     setBusy(false);
   }
 
+  void removeSelectedItem(ItemModel item) {
+    setBusy(true);
+    _itemSelectionServices.removeFromSelectedItemList(item);
+    setBusy(false);
+  }
+
   void incrementQty(ItemModel itemModel) {
     setBusy(true);
     _itemSelectionServices.incrementQty(itemModel);

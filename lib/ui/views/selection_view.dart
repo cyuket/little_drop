@@ -113,7 +113,7 @@ class SelectionView extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 20.0),
+                            padding: const EdgeInsets.only(right: 60.0),
                             child: Text(
                               "Quanty",
                               style: GoogleFonts.lato(
@@ -136,6 +136,10 @@ class SelectionView extends StatelessWidget {
                             },
                             decrementQty: () {
                               data.decrementQty(data.selectedItems[index]);
+                            },
+                            removeItem: () {
+                              data.removeSelectedItem(
+                                  data.selectedItems[index]);
                             },
                           );
                         },

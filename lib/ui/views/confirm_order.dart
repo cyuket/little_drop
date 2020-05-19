@@ -9,7 +9,6 @@ import 'package:little_drops/ui/shared/screen_util.dart';
 import 'package:little_drops/ui/widgets/total_widget.dart';
 import 'package:little_drops/viewModel/selection_item_view_model.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
 class ConfirmOrder extends StatelessWidget {
@@ -88,6 +87,9 @@ class ConfirmOrder extends StatelessWidget {
                           },
                           decrementQty: () {
                             data.decrementQty(data.selectedItems[index]);
+                          },
+                          removeItem: () {
+                            data.removeSelectedItem(data.selectedItems[index]);
                           },
                         );
                       },

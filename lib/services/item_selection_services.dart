@@ -53,6 +53,10 @@ class ItemSelectionServices {
     _selectedItems.add(item);
   }
 
+  void removeFromSelectedItemList(ItemModel item) {
+    _selectedItems.remove(item);
+  }
+
 //incrementing quantity
   void incrementQty(ItemModel itemModel) {
     itemModel.incrementQty();
