@@ -1,5 +1,5 @@
 import 'dart:collection';
-
+import 'package:flutter/material.dart';
 import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/models/services_model.dart';
@@ -69,6 +69,8 @@ class ItemSelectionServices {
   // handling submission of order
 
   String pickUpAdress, deliveryAdress;
+  DateTime pickupDate, deliveryDate;
+  TimeOfDay pickupTime, deliveryTime;
 
   void updatePickupAdrees(String address) {
     pickUpAdress = address;
@@ -76,6 +78,18 @@ class ItemSelectionServices {
 
   void updateDeliveryAdrees(String address) {
     deliveryAdress = address;
+  }
+
+  void updatePickupAndDeliveryTime({
+    DateTime pickupDatee,
+    DateTime deliveryDatee,
+    TimeOfDay pickupTimee,
+    TimeOfDay deliveryTimee,
+  }) {
+    pickupTime = pickupTimee;
+    pickupDate = pickupDatee;
+    deliveryDate = deliveryDatee;
+    deliveryTime = deliveryTimee;
   }
 }
 

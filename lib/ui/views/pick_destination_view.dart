@@ -198,7 +198,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Where would you like us to pick your clothes?",
+                          "Where would you like us to delivery your clothes?",
                           style: mapStyle,
                         ),
                         verticalSpace(15),
@@ -232,7 +232,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
                                             controller: deliveryController,
                                             decoration: InputDecoration(
                                                 hintText:
-                                                    "Search pickup location",
+                                                    "Search Delivery location",
                                                 hintStyle:
                                                     TextStyle(fontSize: 15),
                                                 border: InputBorder.none,
