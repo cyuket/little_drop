@@ -19,10 +19,11 @@ dependencies:
   flutter_svg: ^0.17.4
   grouped_buttons: ^1.0.4
   google_maps_flutter: ^0.5.27+3
-  geolocator: ^5.3.1
   location: ^3.0.2
   intl: ^0.16.1
   flutter_multi_formatter: ^1.1.6
+  flutter_google_places: ^0.2.5
+  geocoder: ^0.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

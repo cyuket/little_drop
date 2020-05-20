@@ -7,9 +7,6 @@ class ItemSelectionViewModel extends BaseModel {
   final ItemSelectionServices _itemSelectionServices =
       locator<ItemSelectionServices>();
 
-  // getting all Items
-  // List<ItemModel> get items => _itemSelectionServices.items;
-
   // getting selected Items
 
   List<ItemModel> get selectedItems => _itemSelectionServices.selectedItems;

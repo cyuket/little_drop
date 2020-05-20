@@ -41,7 +41,6 @@ class ItemSelectionServices {
   }
 
   // selected item list
-
   List<ItemModel> _selectedItems = [];
 
   UnmodifiableListView<ItemModel> get selectedItems {
@@ -65,6 +64,18 @@ class ItemSelectionServices {
 //decrementing quantity
   void decrementQty(ItemModel itemModel) {
     itemModel.decrementQty();
+  }
+
+  // handling submission of order
+
+  String pickUpAdress, deliveryAdress;
+
+  void updatePickupAdrees(String address) {
+    pickUpAdress = address;
+  }
+
+  void updateDeliveryAdrees(String address) {
+    deliveryAdress = address;
   }
 }
 
