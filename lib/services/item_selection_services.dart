@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/models/services_model.dart';
+import 'package:little_drops/models/user.dart';
 
 enum Services {
   washAndIron,
@@ -45,11 +46,14 @@ class ItemSelectionServices {
   double _amount = 0;
   double _totalAmount = 0;
   double _delivery = 1000;
+
+  //getting
   double get selectedTotal {
+    double itemAmount = 0;
     for (var item in _selectedItems) {
-      _amount = _amount + item.totalPrice;
+      itemAmount = itemAmount + item.totalPrice;
     }
-    return _amount;
+    return _amount = itemAmount;
   }
 
   double get totalAmount {
@@ -98,6 +102,11 @@ class ItemSelectionServices {
   DateTime get deliveryDate => _deliveryDate;
   TimeOfDay get pickUpTime => _pickupTime;
   TimeOfDay get deliveryTime => _deliveryTime;
+  String get paymentMethod => _paymentMethod;
+
+  void updatePaymethod(String paymentMethod) {
+    _paymentMethod = paymentMethod;
+  }
 
   void updatePickupAdrees(String address) {
     _pickUpAdress = address;

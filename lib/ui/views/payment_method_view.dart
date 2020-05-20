@@ -4,51 +4,63 @@ import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
+import 'package:little_drops/viewModel/payment_view_model.dart';
+import 'package:provider_architecture/_viewmodel_provider.dart';
 
 class PaymentMethodView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors().background,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors().background,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back,
-            color: AppColors().primaryColor,
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              verticalSpace(20),
-              Container(
-                width: screenWidth(context) - 70,
-                child:
-                    Text(" Choose a convenient payment method", style: header),
+    return ViewModelProvider<PaymentViewModel>.withConsumer(
+        viewModelBuilder: () => PaymentViewModel(),
+        builder: (context, data, child) {
+          return Scaffold(
+            backgroundColor: AppColors().background,
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: AppColors().background,
+              leading: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: AppColors().primaryColor,
+                ),
               ),
-              verticalSpace(40),
-              PaymentCard(
-                iconString: AppAsset().card,
-                title: "Pay with card",
-                onTap: () => Navigator.pushNamed(context, CardAddingRoute),
+            ),
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    verticalSpace(20),
+                    Container(
+                      width: screenWidth(context) - 70,
+                      child: Text(" Choose a convenient payment method",
+                          style: header),
+                    ),
+                    verticalSpace(40),
+                    PaymentCard(
+                      iconString: AppAsset().card,
+                      title: "Pay with card",
+                      onTap: () {
+                        data.updatePaymethod("Debit Card");
+                        Navigator.pushNamed(context, CardAddingRoute);
+                      },
+                    ),
+                    PaymentCard(
+                      iconString: AppAsset().buy,
+                      title: "Pay on delivery",
+                      onTap: () {
+                        data.updatePaymethod("Payment On Delivery");
+                        Navigator.pushNamed(context, OrderSummaryRoute);
+                      },
+                    ),
+                  ],
+                ),
               ),
-              PaymentCard(
-                iconString: AppAsset().buy,
-                title: "Pay on delivery",
-                onTap: null,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
 }
 

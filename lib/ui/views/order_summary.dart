@@ -106,7 +106,7 @@ class OrderSummaryView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Michelle Ada",
+                            data.user.fullName,
                             style: amountStyle,
                           ),
                           verticalSpace(10),
@@ -116,7 +116,7 @@ class OrderSummaryView extends StatelessWidget {
                           ),
                           verticalSpace(10),
                           Text(
-                            "Phone Number",
+                            data.user.phoneNumber,
                             style: amountStyle,
                           ),
                         ],
@@ -191,7 +191,7 @@ class OrderSummaryView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            "Debit Card",
+                            data.paymentMethod,
                             style: amountStyle,
                           ),
                         ],
@@ -201,7 +201,9 @@ class OrderSummaryView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20.0, horizontal: 20),
                       child: BusyButton(
-                        title: "Pay Now",
+                        title: (data.paymentMethod == "Debit Card")
+                            ? "Pay Now"
+                            : "Place Order",
                         onPressed: () => Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
