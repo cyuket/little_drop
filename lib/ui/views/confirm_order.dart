@@ -15,16 +15,9 @@ class ConfirmOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
-
     return ViewModelProvider<ItemSelectionViewModel>.withConsumer(
         viewModelBuilder: () => ItemSelectionViewModel(),
         builder: (context, data, child) {
-          double amount = 0;
-          double delivery = 1000;
-          for (var item in data.selectedItems) {
-            amount = amount + item.totalPrice;
-          }
-          double total = amount + delivery;
           return Scaffold(
             backgroundColor: AppColors().background,
             appBar: AppBar(
@@ -101,9 +94,10 @@ class ConfirmOrder extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        TotalWidget(amount: amount, title: "Laundry fee"),
+                        TotalWidget(amount: data.amount, title: "Laundry fee"),
                         verticalSpace(20),
-                        TotalWidget(amount: delivery, title: "Delivery fee"),
+                        TotalWidget(
+                            amount: data.deliveryAmount, title: "Delivery fee"),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0),
                           child: Divider(
@@ -113,7 +107,7 @@ class ConfirmOrder extends StatelessWidget {
                           ),
                         ),
                         TotalWidget(
-                          amount: total,
+                          amount: data.totalAmount,
                           title: "Total fee",
                           bold: true,
                           textStyle: amountBoldStyle,

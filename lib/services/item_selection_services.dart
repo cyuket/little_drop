@@ -42,6 +42,22 @@ class ItemSelectionServices {
 
   // selected item list
   List<ItemModel> _selectedItems = [];
+  double _amount = 0;
+  double _totalAmount = 0;
+  double _delivery = 1000;
+  double get selectedTotal {
+    for (var item in _selectedItems) {
+      _amount = _amount + item.totalPrice;
+    }
+    return _amount;
+  }
+
+  double get totalAmount {
+    _totalAmount = _amount + _delivery;
+    return _totalAmount;
+  }
+
+  double get deliveryAmount => _delivery;
 
   UnmodifiableListView<ItemModel> get selectedItems {
     return UnmodifiableListView(_selectedItems);
@@ -68,16 +84,27 @@ class ItemSelectionServices {
 
   // handling submission of order
 
-  String pickUpAdress, deliveryAdress;
-  DateTime pickupDate, deliveryDate;
-  TimeOfDay pickupTime, deliveryTime;
+  String _pickUpAdress, _deliveryAdress;
+  DateTime _pickupDate, _deliveryDate;
+  TimeOfDay _pickupTime, _deliveryTime;
+  String _cardNumber, _expiryDate, _cvv;
+  String _paymentMethod;
+
+//handleing gettters for variables
+
+  String get pickupAdress => _pickUpAdress;
+  String get deliveryAdress => _deliveryAdress;
+  DateTime get pickUpDate => _pickupDate;
+  DateTime get deliveryDate => _deliveryDate;
+  TimeOfDay get pickUpTime => _pickupTime;
+  TimeOfDay get deliveryTime => _deliveryTime;
 
   void updatePickupAdrees(String address) {
-    pickUpAdress = address;
+    _pickUpAdress = address;
   }
 
   void updateDeliveryAdrees(String address) {
-    deliveryAdress = address;
+    _deliveryAdress = address;
   }
 
   void updatePickupAndDeliveryTime({
@@ -86,10 +113,16 @@ class ItemSelectionServices {
     TimeOfDay pickupTimee,
     TimeOfDay deliveryTimee,
   }) {
-    pickupTime = pickupTimee;
-    pickupDate = pickupDatee;
-    deliveryDate = deliveryDatee;
-    deliveryTime = deliveryTimee;
+    _pickupTime = pickupTimee;
+    _pickupDate = pickupDatee;
+    _deliveryDate = deliveryDatee;
+    _deliveryTime = deliveryTimee;
+  }
+
+  void updateCardDetails({String number, String date, String cvvNumber}) {
+    _cardNumber = number;
+    _expiryDate = date;
+    _cvv = cvvNumber;
   }
 }
 

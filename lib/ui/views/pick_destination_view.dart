@@ -260,7 +260,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
                         verticalSpace(15),
                         BusyButton(
                           onPressed: () {
-                            data.updatePickupAdrees(deliveryController.text);
+                            data.updateDeliveryAdrees(deliveryController.text);
                             Navigator.pushNamed(context, ConfirmOrderRoute);
                           },
                           title: "Next",

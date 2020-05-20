@@ -11,6 +11,10 @@ class ItemSelectionViewModel extends BaseModel {
 
   List<ItemModel> get selectedItems => _itemSelectionServices.selectedItems;
 
+  double get amount => _itemSelectionServices.selectedTotal;
+  double get totalAmount => _itemSelectionServices.totalAmount;
+  double get deliveryAmount => _itemSelectionServices.deliveryAmount;
+
   //Adding selected Item
 
   void addToSelectedItemList(ItemModel item) {
