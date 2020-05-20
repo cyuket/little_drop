@@ -25,6 +25,8 @@ class PickUpLocation extends StatefulWidget {
 class _PickUpLocationState extends State<PickUpLocation> {
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
   //map variables
+
+  bool isLocation = false;
   final pickUpController = TextEditingController();
   GoogleMapController mapController;
   StreamSubscription _locationSubscription;
@@ -125,6 +127,10 @@ class _PickUpLocationState extends State<PickUpLocation> {
 
           pickUpController.text = first.locality;
           updateMarkerAndCircle(newLocalData);
+
+          setState(() {
+            isLocation = true;
+          });
         }
       });
       // _locationSubscription.pause();
@@ -163,6 +169,10 @@ class _PickUpLocationState extends State<PickUpLocation> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLocation) {
+      _locationSubscription.pause();
+    }
+
     return ViewModelProvider<MapViewModel>.withConsumer(
         viewModelBuilder: () => MapViewModel(),
         builder: (context, data, child) {
@@ -231,14 +241,15 @@ class _PickUpLocationState extends State<PickUpLocation> {
                                           child: TextFormField(
                                             controller: pickUpController,
                                             decoration: InputDecoration(
-                                                hintText:
-                                                    "Search pickup location",
-                                                hintStyle:
-                                                    TextStyle(fontSize: 15),
-                                                border: InputBorder.none,
-                                                enabledBorder: InputBorder.none,
-                                                contentPadding:
-                                                    EdgeInsets.all(10)),
+                                              hintText:
+                                                  "Search pickup location",
+                                              hintStyle:
+                                                  TextStyle(fontSize: 13),
+                                              border: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              contentPadding: EdgeInsets.only(
+                                                  left: 10, bottom: 17),
+                                            ),
                                           ),
                                         ),
                                       ),

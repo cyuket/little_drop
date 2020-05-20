@@ -24,6 +24,7 @@ class DestinationLocation extends StatefulWidget {
 
 class _DestinationLocationState extends State<DestinationLocation> {
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
+  bool isLocation = false;
   //map variables
   final deliveryController = TextEditingController();
   GoogleMapController mapController;
@@ -125,6 +126,9 @@ class _DestinationLocationState extends State<DestinationLocation> {
 
           deliveryController.text = first.locality;
           updateMarkerAndCircle(newLocalData);
+          setState(() {
+            isLocation = true;
+          });
         }
       });
       // _locationSubscription.pause();
@@ -163,6 +167,9 @@ class _DestinationLocationState extends State<DestinationLocation> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLocation) {
+      _locationSubscription.pause();
+    }
     return ViewModelProvider<MapViewModel>.withConsumer(
         viewModelBuilder: () => MapViewModel(),
         builder: (context, data, child) {
@@ -231,14 +238,15 @@ class _DestinationLocationState extends State<DestinationLocation> {
                                           child: TextFormField(
                                             controller: deliveryController,
                                             decoration: InputDecoration(
-                                                hintText:
-                                                    "Search Delivery location",
-                                                hintStyle:
-                                                    TextStyle(fontSize: 15),
-                                                border: InputBorder.none,
-                                                enabledBorder: InputBorder.none,
-                                                contentPadding:
-                                                    EdgeInsets.all(10)),
+                                              hintText:
+                                                  "Search Delivery location",
+                                              hintStyle:
+                                                  TextStyle(fontSize: 13),
+                                              border: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              contentPadding: EdgeInsets.only(
+                                                  left: 10, bottom: 17),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -253,7 +261,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
                         BusyButton(
                           onPressed: () {
                             data.updatePickupAdrees(deliveryController.text);
-                            Navigator.pushNamed(context, PickUpDateViewRoute);
+                            Navigator.pushNamed(context, ConfirmOrderRoute);
                           },
                           title: "Next",
                         )

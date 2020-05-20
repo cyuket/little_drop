@@ -93,7 +93,7 @@ class _PickDateViewState extends State<PickDateView> {
                           ),
                           verticalSpace(40),
                           Text(
-                            "Pick up schedule",
+                            " Delivery schedule",
                             style: mapStyle,
                           ),
                           TimeAndDate(
@@ -103,6 +103,7 @@ class _PickDateViewState extends State<PickDateView> {
                               var value = await _selectDate();
                               setState(() {
                                 deliveryDate = value;
+                                print(deliveryDate);
                               });
                             },
                             handleTime: () async {
