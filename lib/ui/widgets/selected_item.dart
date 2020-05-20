@@ -36,7 +36,7 @@ class SelectedItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "{${NumberFormat.currency(locale: "en_US", symbol: "₦").format(item.pricePerItem)} per ${item.title}",
+                    "${NumberFormat.currency(locale: "en_US", symbol: "₦").format(item.pricePerItem)} per ${item.title}",
                     style: GoogleFonts.lato(
                       color: AppColors().textColor.withOpacity(0.6),
                       fontSize: 12,

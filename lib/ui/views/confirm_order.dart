@@ -22,7 +22,7 @@ class ConfirmOrder extends StatelessWidget {
           double amount = 0;
           double delivery = 1000;
           for (var item in data.selectedItems) {
-            amount = amount + 200;
+            amount = amount + item.totalPrice;
           }
           double total = amount + delivery;
           return Scaffold(
@@ -42,7 +42,6 @@ class ConfirmOrder extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  verticalSpace(20),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     width: screenWidth(context) - 70,
