@@ -19,7 +19,6 @@ class FirestoreService {
   Future createOrder(OrderModel order) async {
     try {
       await _orderCollectionReference.document().setData(order.toJson());
-      print("firebase");
     } catch (e) {
       print(e);
       return e.message;

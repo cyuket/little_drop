@@ -234,9 +234,11 @@ class _OrderSummaryViewState extends State<OrderSummaryView> {
                               ? "Pay Now"
                               : "Place Order",
                           onPressed: () async {
-                            (data.paymentMethod == "Debit Card")
-                                ? await handlePayment()
-                                : null;
+                            if (data.paymentMethod == "Debit Card") {
+                              await handlePayment();
+                            } else {
+                              data.makeOrder(context);
+                            }
                           }),
                     ),
                   ],

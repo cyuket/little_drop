@@ -4,14 +4,17 @@ import 'package:little_drops/models/services_model.dart';
 class ItemModel {
   final String title, iconUrl;
   int qnty;
+  ServiceType serviceType;
   double pricePerItem, totalPrice;
 
-  ItemModel(
-      {@required this.title,
-      @required this.iconUrl,
-      this.qnty = 1,
-      @required this.pricePerItem,
-      @required this.totalPrice});
+  ItemModel({
+    @required this.title,
+    @required this.iconUrl,
+    this.qnty = 1,
+    @required this.pricePerItem,
+    @required this.totalPrice,
+    this.serviceType,
+  });
   void incrementQty() {
     qnty++;
     totalPrice = pricePerItem * qnty;
@@ -22,14 +25,16 @@ class ItemModel {
         iconUrl = data["iconUrl"],
         qnty = data["qnty"],
         pricePerItem = data["pricePerItem"],
-        totalPrice = data["totalPrice"];
+        totalPrice = data["totalPrice"],
+        serviceType = data["serviceType"];
   Map<String, dynamic> toJson() {
     return {
       "title": title,
       "iconUrl": iconUrl,
       "qnty": qnty,
       "pricePerItem": pricePerItem,
-      "totalPrice": totalPrice
+      "totalPrice": totalPrice,
+      "serviceType": serviceType
     };
   }
 

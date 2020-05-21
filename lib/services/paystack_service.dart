@@ -114,7 +114,6 @@ class PaystackService {
       pickupAddress: _itemSelectionServices.pickupAdress,
     );
     await _firestoreService.createOrder(order);
-    print("payStack");
     _navigationService.clearLastAndNavigateTo(OrderProgressRoute);
   }
 

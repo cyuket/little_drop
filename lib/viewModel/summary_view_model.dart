@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:little_drops/constants/route_names.dart';
+import 'package:little_drops/models/order_model.dart';
 import 'package:little_drops/models/user.dart';
 import 'package:little_drops/services/authentication_service.dart';
+import 'package:little_drops/services/firestore_service.dart';
+import 'package:little_drops/services/navigation_service.dart';
 import 'package:little_drops/services/paystack_service.dart';
 
 import 'base_model.dart';
@@ -13,6 +17,8 @@ class SummaryViewModel extends BaseModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
   final PaystackService _paystackService = locator<PaystackService>();
+  final FirestoreService _firestoreService = locator<FirestoreService>();
+  final NavigationService _navigationService = locator<NavigationService>();
 
   // getting selected Items
   User get user => _authenticationService.currentUser;
@@ -30,6 +36,32 @@ class SummaryViewModel extends BaseModel {
   Future processPayment(String reference, BuildContext context) async {
     setBusy(true);
     await _paystackService.chargeCard(reference, context);
+    setBusy(false);
+  }
+
+  Future makeOrder(BuildContext context) async {
+    setBusy(true);
+    List _items = [];
+    for (var item in _itemSelectionServices.selectedItems) {
+      var detail = item.toJson();
+      _items.add(detail);
+    }
+    OrderModel order = OrderModel(
+      status: false,
+      orderDetails: _items,
+      reference: "",
+      user: _authenticationService.currentUser,
+      paymentType: _itemSelectionServices.paymentMethod,
+      pickup: true,
+      pickupDate: _itemSelectionServices.pickUpDate,
+      pickupTime: _itemSelectionServices.pickUpTime.format(context),
+      deliveryDate: _itemSelectionServices.deliveryDate,
+      deliveryTime: _itemSelectionServices.deliveryTime.format(context),
+      deliveryAddress: _itemSelectionServices.deliveryAdress,
+      pickupAddress: _itemSelectionServices.pickupAdress,
+    );
+    await _firestoreService.createOrder(order);
+    _navigationService.clearLastAndNavigateTo(OrderProgressRoute);
     setBusy(false);
   }
 }

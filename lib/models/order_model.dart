@@ -67,7 +67,8 @@ class OrderModel {
       "deliveryTime": deliveryTime,
       "pickupTime": pickupTime,
       "deliveryAddress": deliveryAddress,
-      "pickupAddress": pickupAddress
+      "pickupAddress": pickupAddress,
+      "paymentType": paymentType
     };
   }
 }
