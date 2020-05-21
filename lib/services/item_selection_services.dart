@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/models/services_model.dart';
-import 'package:little_drops/models/user.dart';
 
 enum Services {
   washAndIron,
@@ -98,6 +97,9 @@ class ItemSelectionServices {
 
   String get pickupAdress => _pickUpAdress;
   String get deliveryAdress => _deliveryAdress;
+  String get cardNumber => _cardNumber;
+  String get expiryDate => _expiryDate;
+  String get cvv => _cvv;
   DateTime get pickUpDate => _pickupDate;
   DateTime get deliveryDate => _deliveryDate;
   TimeOfDay get pickUpTime => _pickupTime;

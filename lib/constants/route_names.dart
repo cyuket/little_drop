@@ -12,5 +12,6 @@ const String ConfirmOrderRoute = "ConfirmOrder";
 const String PaymentMethodRoute = "PaymentMethod";
 const String CardAddingRoute = "CardAddingView";
 const String OrderSummaryRoute = "OrderSummaryView";
+const String OrderProgressRoute = "OrderProgressView";
 
 // Generate the views here

@@ -102,18 +102,18 @@ class _OrderViewState extends State<OrderView> {
                 child: isCurrent
                     ? ListView.builder(
                         itemBuilder: (context, index) {
-                          return orders[index].active
+                          return orders[index].status
                               ? OrderCards(
-                                  active: orders[index].active,
+                                  active: orders[index].status,
                                 )
                               : SizedBox();
                         },
                         itemCount: orders.length)
                     : ListView.builder(
                         itemBuilder: (context, index) {
-                          return !orders[index].active
+                          return !orders[index].status
                               ? OrderCards(
-                                  active: orders[index].active,
+                                  active: orders[index].status,
                                 )
                               : SizedBox();
                         },
@@ -129,9 +129,9 @@ class _OrderViewState extends State<OrderView> {
 }
 
 List<OrderModel> orders = [
-  OrderModel(active: true),
-  OrderModel(active: false),
-  OrderModel(active: false),
-  OrderModel(active: false),
-  OrderModel(active: false),
+  OrderModel(status: true),
+  OrderModel(status: false),
+  OrderModel(status: false),
+  OrderModel(status: false),
+  OrderModel(status: false),
 ];

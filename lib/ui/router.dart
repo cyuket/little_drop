@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:little_drops/ui/views/card_adding_view.dart';
 import 'package:little_drops/ui/views/confirm_order.dart';
 import 'package:little_drops/ui/views/onboarding.dart';
+import 'package:little_drops/ui/views/order_progress_view.dart';
 import 'package:little_drops/ui/views/order_summary.dart';
 import 'package:little_drops/ui/views/payment_method_view.dart';
 import 'package:little_drops/ui/views/pick_date_view.dart';
@@ -87,6 +88,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: OrderSummaryView(),
+      );
+    case OrderProgressRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: OrderProgressView(),
       );
 
     default:

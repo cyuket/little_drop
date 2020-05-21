@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:little_drops/models/user.dart';
 import 'package:little_drops/services/authentication_service.dart';
+import 'package:little_drops/services/paystack_service.dart';
 
 import 'base_model.dart';
 import 'package:little_drops/services/item_selection_services.dart';
@@ -11,6 +12,7 @@ class SummaryViewModel extends BaseModel {
       locator<ItemSelectionServices>();
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
+  final PaystackService _paystackService = locator<PaystackService>();
 
   // getting selected Items
   User get user => _authenticationService.currentUser;
@@ -24,4 +26,10 @@ class SummaryViewModel extends BaseModel {
   TimeOfDay get pickUpTime => _itemSelectionServices.pickUpTime;
   TimeOfDay get deliveryTime => _itemSelectionServices.deliveryTime;
   String get paymentMethod => _itemSelectionServices.paymentMethod;
+
+  Future processPayment(String reference, BuildContext context) async {
+    setBusy(true);
+    await _paystackService.chargeCard(reference, context);
+    setBusy(false);
+  }
 }

@@ -24,6 +24,8 @@ dependencies:
   flutter_multi_formatter: ^1.1.6
   flutter_google_places: ^0.2.5
   geocoder: ^0.2.1
+  flutter_paystack: ^1.0.3+1
+  http: ^0.12.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -19,6 +19,14 @@ class DialogService {
     _showDialogListener = showDialogListener;
   }
 
+  void successfulPayment(Function(DialogRequest) showDialogListener) {
+    _showDialogListener = showDialogListener;
+  }
+
+  void onError(Function(DialogRequest) showDialogListener) {
+    _showDialogListener = showDialogListener;
+  }
+
   /// Calls the dialog listener and returns a Future that will wait for dialogComplete.
   Future<DialogResponse> showDialog({
     String title,

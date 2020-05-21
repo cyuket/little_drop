@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:little_drops/constants/mapKey.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
@@ -7,14 +8,41 @@ import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/widgets/total_widget.dart';
 import 'package:little_drops/viewModel/summary_view_model.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
-import 'package:intl/intl.dart';
+import 'dart:io';
+import 'package:flutter_paystack/flutter_paystack.dart';
 
-class OrderSummaryView extends StatelessWidget {
+class OrderSummaryView extends StatefulWidget {
+  @override
+  _OrderSummaryViewState createState() => _OrderSummaryViewState();
+}
+
+class _OrderSummaryViewState extends State<OrderSummaryView> {
+  String _getReference() {
+    String platform;
+    if (Platform.isIOS) {
+      platform = 'iOS';
+    } else {
+      platform = 'Android';
+    }
+    return 'ChargedFrom${platform}_${DateTime.now().millisecondsSinceEpoch}';
+  }
+
+  @override
+  void initState() {
+    PaystackPlugin.initialize(publicKey: pk_test);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<SummaryViewModel>.withConsumer(
         viewModelBuilder: () => SummaryViewModel(),
         builder: (context, data, child) {
+          Future handlePayment() async {
+            var reference = _getReference();
+            await data.processPayment(reference, context);
+          }
+
           return Scaffold(
             backgroundColor: AppColors().background,
             appBar: AppBar(
@@ -201,16 +229,15 @@ class OrderSummaryView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20.0, horizontal: 20),
                       child: BusyButton(
-                        title: (data.paymentMethod == "Debit Card")
-                            ? "Pay Now"
-                            : "Place Order",
-                        onPressed: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => OrderProgressView(),
-                          ),
-                        ),
-                      ),
+                          busy: data.busy,
+                          title: (data.paymentMethod == "Debit Card")
+                              ? "Pay Now"
+                              : "Place Order",
+                          onPressed: () async {
+                            (data.paymentMethod == "Debit Card")
+                                ? await handlePayment()
+                                : null;
+                          }),
                     ),
                   ],
                 ),

@@ -17,6 +17,22 @@ class ItemModel {
     totalPrice = pricePerItem * qnty;
   }
 
+  ItemModel.fromData(Map<String, dynamic> data)
+      : title = data["title"],
+        iconUrl = data["iconUrl"],
+        qnty = data["qnty"],
+        pricePerItem = data["pricePerItem"],
+        totalPrice = data["totalPrice"];
+  Map<String, dynamic> toJson() {
+    return {
+      "title": title,
+      "iconUrl": iconUrl,
+      "qnty": qnty,
+      "pricePerItem": pricePerItem,
+      "totalPrice": totalPrice
+    };
+  }
+
   void decrementQty() {
     qnty--;
     totalPrice = pricePerItem * qnty;
