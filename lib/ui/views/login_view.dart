@@ -76,8 +76,11 @@ class LoginView extends StatelessWidget {
                       busy: model.busy,
                       onPressed: () {
                         model.login(
-                            email: emailController.text,
-                            password: passwordController.text);
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                        emailController.clear();
+                        passwordController.clear();
                       },
                     ),
                     Padding(

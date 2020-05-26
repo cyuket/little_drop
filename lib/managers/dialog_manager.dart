@@ -30,18 +30,32 @@ class _DialogManagerState extends State<DialogManager> {
   }
 
   void _showSignupDialog(DialogRequest request) {
-    // var isConfirmationDialog = request.cancelTitle != null;
+    var isConfirmationDialog = request.cancelTitle != null;
 
     showDialog(
       context: context,
-      builder: (BuildContext diaLogcontext) => CustomModal(
-        message: "Yo! Yo!! Yo!!! You’ve successfully signed in!!! ",
-        buttonText: "Continue",
-        onTap: () {
-          _dialogService.dialogComplete(DialogResponse(confirmed: true));
-          _navigationService.navigateTo(ReminderViewRoute);
-        },
-      ),
+      builder: (BuildContext diaLogcontext) => !isConfirmationDialog
+          ? CustomModal(
+              message: "Yo! Yo!! Yo!!! You’ve successfully signed in!!! ",
+              buttonText: "Continue",
+              onTap: () {
+                _dialogService.dialogComplete(DialogResponse(confirmed: true));
+                _navigationService.navigateTo(ReminderViewRoute);
+              },
+            )
+          : AlertDialog(
+              title: Text(request.title),
+              content: Text(request.description),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(request.buttonTitle),
+                  onPressed: () {
+                    _dialogService
+                        .dialogComplete(DialogResponse(confirmed: true));
+                  },
+                ),
+              ],
+            ),
     );
   }
 

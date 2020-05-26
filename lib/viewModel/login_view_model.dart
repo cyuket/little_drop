@@ -19,6 +19,28 @@ class LoginViewModel extends BaseModel {
   }) async {
     setBusy(true);
 
+    // validation of email
+    if (email.isEmpty) {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
+        description: 'Email Field is required',
+        cancelTitle: "Cancel",
+      );
+      setBusy(false);
+      return;
+    }
+
+    // validation for password
+    if (password.isEmpty) {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
+        description: 'Password  Field is required',
+        cancelTitle: "Cancel",
+      );
+      setBusy(false);
+      return;
+    }
+
     var result = await _authenticationService.loginWithEmail(
       email: email,
       password: password,
@@ -31,14 +53,15 @@ class LoginViewModel extends BaseModel {
         _navigationService.navigateTo(HomeViewRoute);
       } else {
         await _dialogService.showDialog(
-          title: 'Login Failure',
-          description: 'General login failure. Please try again later',
-        );
+            title: 'Login Failure',
+            description: 'General login failure. Please try again later',
+            cancelTitle: "Cancel");
       }
     } else {
       await _dialogService.showDialog(
         title: 'Login Failure',
         description: result,
+        cancelTitle: "cancel",
       );
     }
   }

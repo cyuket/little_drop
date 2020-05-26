@@ -44,48 +44,48 @@ class PaystackService {
     );
   }
 
-  Future testPayment(String reference, BuildContext context) async {
-    var charge = Charge()
-      ..amount = (_itemSelectionServices.totalAmount * 100).round()
-      ..email = _authenticationService.currentUser.email
-      ..reference = reference;
-    // ..card = _getCardFromUI();
+  // Future testPayment(String reference, BuildContext context) async {
+  //   var charge = Charge()
+  //     ..amount = (_itemSelectionServices.totalAmount * 100).round()
+  //     ..email = _authenticationService.currentUser.email
+  //     ..reference = reference;
+  //   // ..card = _getCardFromUI();
 
-    // await PaystackPlugin.chargeCard(
-    //   context,
-    //   charge: charge,
-    //   beforeValidate: (transaction) => handleBeforeValidate(transaction),
-    //   onSuccess: (transaction) => handleOnSuccess(transaction),
-    //   onError: (error, transaction) =>
-    //       handleOnError(error, transaction, context),
-    // );
+  //   // await PaystackPlugin.chargeCard(
+  //   //   context,
+  //   //   charge: charge,
+  //   //   beforeValidate: (transaction) => handleBeforeValidate(transaction),
+  //   //   onSuccess: (transaction) => handleOnSuccess(transaction),
+  //   //   onError: (error, transaction) =>
+  //   //       handleOnError(error, transaction, context),
+  //   // );
 
-    CheckoutResponse response = await PaystackPlugin.checkout(
-      context,
-      method: CheckoutMethod.card, // Defaults to CheckoutMethod.selectable
-      charge: charge,
-    );
+  //   CheckoutResponse response = await PaystackPlugin.checkout(
+  //     context,
+  //     method: CheckoutMethod.card, // Defaults to CheckoutMethod.selectable
+  //     charge: charge,
+  //   );
 
-    if (response.status) {
-      print(response.reference);
-      OrderModel order = OrderModel(
-        status: false,
-        orderDetails: _itemSelectionServices.selectedItems,
-        reference: response.reference,
-        user: _authenticationService.currentUser,
-        paymentType: _itemSelectionServices.paymentMethod,
-        pickup: true,
-        pickupDate: _itemSelectionServices.pickUpDate,
-        pickupTime: _itemSelectionServices.pickUpTime.format(context),
-        deliveryDate: _itemSelectionServices.deliveryDate,
-        deliveryTime: _itemSelectionServices.deliveryTime.format(context),
-        deliveryAddress: _itemSelectionServices.deliveryAdress,
-        pickupAddress: _itemSelectionServices.pickupAdress,
-      );
-      await _firestoreService.createOrder(order);
-      _navigationService.clearLastAndNavigateTo(OrderProgressRoute);
-    }
-  }
+  //   if (response.status) {
+  //     print(response.reference);
+  //     OrderModel order = OrderModel(
+  //       status: false,
+  //       orderDetails: _itemSelectionServices.selectedItems,
+  //       reference: response.reference,
+  //       user: _authenticationService.currentUser,
+  //       paymentType: _itemSelectionServices.paymentMethod,
+  //       pickup: true,
+  //       pickupDate: _itemSelectionServices.pickUpDate,
+  //       pickupTime: _itemSelectionServices.pickUpTime.format(context),
+  //       deliveryDate: _itemSelectionServices.deliveryDate,
+  //       deliveryTime: _itemSelectionServices.deliveryTime.format(context),
+  //       deliveryAddress: _itemSelectionServices.deliveryAdress,
+  //       pickupAddress: _itemSelectionServices.pickupAdress,
+  //     );
+  //     await _firestoreService.createOrder(order);
+  //     _navigationService.clearLastAndNavigateTo(OrderProgressRoute);
+  //   }
+  // }
 
   handleBeforeValidate(Transaction transaction) {
     print(transaction.message);
@@ -118,9 +118,9 @@ class PaystackService {
   }
 
   handleOnError(Object error, Transaction transaction, BuildContext context) {
-    // Scaffold.of(context).showSnackBar(SnackBar(
-    //   content: Text("${error.format(context)}"),
-    // ));
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(error),
+    ));
     // print(error);
     // _showErrorDialog();
   }

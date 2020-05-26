@@ -23,6 +23,8 @@ class AuthenticationService {
       await _populateCurrentUser(authResult.user);
       return authResult.user != null;
     } catch (e) {
+      print("error");
+      print(e);
       return e.message;
     }
   }

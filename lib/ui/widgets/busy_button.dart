@@ -23,7 +23,7 @@ class _BusyButtonState extends State<BusyButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onPressed,
+      onTap: !widget.busy ? widget.onPressed : null,
       child: InkWell(
         child: AnimatedContainer(
           // height: widget.busy ? 48 : null,
@@ -35,7 +35,7 @@ class _BusyButtonState extends State<BusyButton> {
               vertical: widget.busy ? 10 : 10),
           decoration: BoxDecoration(
               color: !widget.outline
-                  ? widget.enabled
+                  ? widget.busy
                       ? AppColors().primaryColor
                       : AppColors().primaryColor
                   : Colors.white,
