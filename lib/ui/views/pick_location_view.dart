@@ -27,7 +27,7 @@ class _PickUpLocationState extends State<PickUpLocation> {
   //map variables
 
   bool isLocation = false;
-  final pickUpController = TextEditingController();
+  String pickUp = "";
   GoogleMapController mapController;
   StreamSubscription _locationSubscription;
   var _location = GetLocation.location;
@@ -70,7 +70,10 @@ class _PickUpLocationState extends State<PickUpLocation> {
           await _places.getDetailsByPlaceId(p.placeId);
       final lat = detail.result.geometry.location.lat;
       final lng = detail.result.geometry.location.lng;
-      pickUpController.text = p.description;
+
+      setState(() {
+        pickUp = p.description;
+      });
       mapController.animateCamera(
         CameraUpdate.newCameraPosition(
           new CameraPosition(
@@ -125,11 +128,11 @@ class _PickUpLocationState extends State<PickUpLocation> {
               await Geocoder.local.findAddressesFromCoordinates(coordinates);
           var first = addresses.first;
 
-          pickUpController.text = first.locality;
           updateMarkerAndCircle(newLocalData);
 
           setState(() {
             isLocation = true;
+            pickUp = first.addressLine;
           });
         }
       });
@@ -236,23 +239,14 @@ class _PickUpLocationState extends State<PickUpLocation> {
                                     horizontalSpaceSmall,
                                     Expanded(
                                       child: InkWell(
-                                        onTap: _handlePressButton,
-                                        child: IgnorePointer(
-                                          child: TextFormField(
-                                            controller: pickUpController,
-                                            decoration: InputDecoration(
-                                              hintText:
-                                                  "Search pickup location",
-                                              hintStyle:
-                                                  TextStyle(fontSize: 13),
-                                              border: InputBorder.none,
-                                              enabledBorder: InputBorder.none,
-                                              contentPadding: EdgeInsets.only(
-                                                  left: 10, bottom: 17),
+                                          onTap: _handlePressButton,
+                                          child: Container(
+                                            child: Text(
+                                              "$pickUp",
+                                              style: amountStyle,
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                          ),
-                                        ),
-                                      ),
+                                          )),
                                     ),
                                   ],
                                 ),
@@ -263,7 +257,7 @@ class _PickUpLocationState extends State<PickUpLocation> {
                         verticalSpace(15),
                         BusyButton(
                           onPressed: () {
-                            data.updatePickupAdrees(pickUpController.text);
+                            data.updatePickupAdrees(pickUp);
                             Navigator.pushNamed(context, PickUpDateViewRoute);
                           },
                           title: "Next",
@@ -278,3 +272,22 @@ class _PickUpLocationState extends State<PickUpLocation> {
         });
   }
 }
+
+// IgnorePointer(
+//                                           child: Flexible(
+//                                             child: TextFormField(
+
+//                                               controller: pickUpController,
+//                                               decoration: InputDecoration(
+//                                                 hintText:
+//                                                     "Search pickup location",
+//                                                 hintStyle:
+//                                                     TextStyle(fontSize: 13),
+//                                                 border: InputBorder.none,
+//                                                 enabledBorder: InputBorder.none,
+//                                                 contentPadding: EdgeInsets.only(
+//                                                     left: 10, bottom: 17),
+//                                               ),
+//                                             ),
+//                                           ),
+//                                         ),

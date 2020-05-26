@@ -26,7 +26,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
   bool isLocation = false;
   //map variables
-  final deliveryController = TextEditingController();
+  String delivery = "";
   GoogleMapController mapController;
   StreamSubscription _locationSubscription;
   var _location = GetLocation.location;
@@ -69,7 +69,10 @@ class _DestinationLocationState extends State<DestinationLocation> {
           await _places.getDetailsByPlaceId(p.placeId);
       final lat = detail.result.geometry.location.lat;
       final lng = detail.result.geometry.location.lng;
-      deliveryController.text = p.description;
+
+      setState(() {
+        delivery = p.description;
+      });
       mapController.animateCamera(
         CameraUpdate.newCameraPosition(
           new CameraPosition(
@@ -124,10 +127,10 @@ class _DestinationLocationState extends State<DestinationLocation> {
               await Geocoder.local.findAddressesFromCoordinates(coordinates);
           var first = addresses.first;
 
-          deliveryController.text = first.locality;
           updateMarkerAndCircle(newLocalData);
           setState(() {
             isLocation = true;
+            delivery = first.addressLine;
           });
         }
       });
@@ -233,23 +236,14 @@ class _DestinationLocationState extends State<DestinationLocation> {
                                     horizontalSpaceSmall,
                                     Expanded(
                                       child: InkWell(
-                                        onTap: _handlePressButton,
-                                        child: IgnorePointer(
-                                          child: TextFormField(
-                                            controller: deliveryController,
-                                            decoration: InputDecoration(
-                                              hintText:
-                                                  "Search Delivery location",
-                                              hintStyle:
-                                                  TextStyle(fontSize: 13),
-                                              border: InputBorder.none,
-                                              enabledBorder: InputBorder.none,
-                                              contentPadding: EdgeInsets.only(
-                                                  left: 10, bottom: 17),
+                                          onTap: _handlePressButton,
+                                          child: Container(
+                                            child: Text(
+                                              "$delivery",
+                                              style: amountStyle,
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                          ),
-                                        ),
-                                      ),
+                                          )),
                                     ),
                                   ],
                                 ),
@@ -260,7 +254,7 @@ class _DestinationLocationState extends State<DestinationLocation> {
                         verticalSpace(15),
                         BusyButton(
                           onPressed: () {
-                            data.updateDeliveryAdrees(deliveryController.text);
+                            data.updateDeliveryAdrees(delivery);
                             Navigator.pushNamed(context, ConfirmOrderRoute);
                           },
                           title: "Next",
