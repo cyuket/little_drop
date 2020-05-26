@@ -4,7 +4,7 @@ import 'package:little_drops/models/services_model.dart';
 class ItemModel {
   final String title, iconUrl;
   int qnty;
-  ServiceType serviceType;
+  String serviceType;
   double pricePerItem, totalPrice;
 
   ItemModel({

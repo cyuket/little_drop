@@ -24,9 +24,9 @@ class _PickDateViewState extends State<PickDateView> {
       initialDate: !isDelivery
           ? new DateTime.now()
           : DateTime.now().add(Duration(days: 1)),
-      firstDate:
-          //  DateTime.now().subtract(Duration(days: 0))
-          DateTime.now().add(Duration(days: 1)),
+      firstDate: !isDelivery
+          ? DateTime.now().subtract(Duration(days: 0))
+          : DateTime.now().add(Duration(days: 1)),
       lastDate: DateTime(2100),
     );
     return picked;

@@ -4,13 +4,6 @@ import 'package:little_drops/constants/assets.dart';
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/models/services_model.dart';
 
-enum Services {
-  washAndIron,
-  dryCleanning,
-  iron,
-  homeService,
-}
-
 class ItemSelectionServices {
   List<ServiceModel> _services = [
     ServiceModel(
@@ -144,31 +137,31 @@ class ItemSelectionServices {
 // List of Items  that can be watched
 List<ItemModel> _washAndIron = [
   ItemModel(
-      serviceType: ServiceType.washAndIron,
+      serviceType: "washAndIron",
       iconUrl: AppAsset().shirt,
       title: "Shirt",
       pricePerItem: 200,
       totalPrice: 200),
   ItemModel(
-      serviceType: ServiceType.washAndIron,
+      serviceType: "washAndIron",
       iconUrl: AppAsset().trouser,
       title: "Trouser",
       pricePerItem: 200,
       totalPrice: 200),
   ItemModel(
-      serviceType: ServiceType.washAndIron,
+      serviceType: "washAndIron",
       iconUrl: AppAsset().blanket,
       title: "Blanket",
       pricePerItem: 500,
       totalPrice: 500),
   ItemModel(
-      serviceType: ServiceType.washAndIron,
+      serviceType: "washAndIron",
       iconUrl: AppAsset().suit,
       title: "Suit",
       pricePerItem: 400,
       totalPrice: 400),
   ItemModel(
-      serviceType: ServiceType.washAndIron,
+      serviceType: "washAndIron",
       iconUrl: AppAsset().jacket,
       title: "Jacket",
       pricePerItem: 300,
@@ -178,25 +171,25 @@ List<ItemModel> _washAndIron = [
 // items for
 List<ItemModel> _iron = [
   ItemModel(
-      serviceType: ServiceType.iron,
+      serviceType: "iron",
       iconUrl: AppAsset().shirt,
       title: "Shirt",
       pricePerItem: 100,
       totalPrice: 100),
   ItemModel(
-      serviceType: ServiceType.iron,
+      serviceType: "iron",
       iconUrl: AppAsset().trouser,
       title: "Trouser",
       pricePerItem: 100,
       totalPrice: 100),
   ItemModel(
-      serviceType: ServiceType.iron,
+      serviceType: "iron",
       iconUrl: AppAsset().suit,
       title: "Suit",
       pricePerItem: 200,
       totalPrice: 200),
   ItemModel(
-      serviceType: ServiceType.iron,
+      serviceType: "iron",
       iconUrl: AppAsset().jacket,
       title: "Jacket",
       pricePerItem: 150,
@@ -205,13 +198,13 @@ List<ItemModel> _iron = [
 // items for
 List<ItemModel> _dryCleaning = [
   ItemModel(
-      serviceType: ServiceType.dryCleanning,
+      serviceType: "dryCleanning",
       iconUrl: AppAsset().shoe,
       title: "Shoe",
       pricePerItem: 300,
       totalPrice: 300),
   ItemModel(
-      serviceType: ServiceType.dryCleanning,
+      serviceType: "dryCleanning",
       iconUrl: AppAsset().blanket,
       title: "Carpet",
       pricePerItem: 1000,
