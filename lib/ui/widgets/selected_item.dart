@@ -55,7 +55,7 @@ class SelectedItem extends StatelessWidget {
               Row(
                 children: <Widget>[
                   InkWell(
-                    onTap: incrementQty,
+                    onTap: decrementQty,
                     child: Container(
                       height: 24,
                       width: 23,
@@ -65,7 +65,7 @@ class SelectedItem extends StatelessWidget {
                           color: Colors.white),
                       child: Center(
                         child: Text(
-                          "+",
+                          "-",
                           style: TextStyle(
                               color: AppColors().primaryColor,
                               fontSize: 14,
@@ -78,7 +78,7 @@ class SelectedItem extends StatelessWidget {
                   Text("${item.qnty}"),
                   horizontalSpaceSmall,
                   InkWell(
-                    onTap: decrementQty,
+                    onTap: incrementQty,
                     child: Container(
                       height: 24,
                       width: 23,
@@ -88,7 +88,7 @@ class SelectedItem extends StatelessWidget {
                           color: Colors.white),
                       child: Center(
                         child: Text(
-                          "-",
+                          "+",
                           style: TextStyle(
                               color: AppColors().primaryColor,
                               fontSize: 14,

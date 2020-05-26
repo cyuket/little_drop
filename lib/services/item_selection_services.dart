@@ -83,6 +83,10 @@ class ItemSelectionServices {
 //decrementing quantity
   void decrementQty(ItemModel itemModel) {
     itemModel.decrementQty();
+    if (itemModel.qnty <= 0) {
+      _selectedItems.remove(itemModel);
+      itemModel.qnty = 1;
+    }
   }
 
   // handling submission of order
