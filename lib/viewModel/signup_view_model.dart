@@ -28,6 +28,42 @@ class SignUpViewModel extends BaseModel {
       @required String phoneNumber}) async {
     setBusy(true);
 
+    if (email.isEmpty) {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
+        description: 'Email Field is required',
+        cancelTitle: "Cancel",
+      );
+      setBusy(false);
+      return;
+    }
+    if (password.isEmpty) {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
+        description: 'Password Field is required',
+        cancelTitle: "Cancel",
+      );
+      setBusy(false);
+      return;
+    }
+    if (fullName.isEmpty) {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
+        description: 'Name  Field is required',
+        cancelTitle: "Cancel",
+      );
+      setBusy(false);
+      return;
+    }
+    if (email.isEmpty) {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
+        description: 'Phone Number Field is required',
+        cancelTitle: "Cancel",
+      );
+      setBusy(false);
+      return;
+    }
     var result = await _authenticationService.signUpWithEmail(
         email: email,
         password: password,
@@ -46,12 +82,14 @@ class SignUpViewModel extends BaseModel {
         await _dialogService.showDialog(
           title: 'Sign Up Failure',
           description: 'General sign up failure. Please try again later',
+          cancelTitle: "Cancel",
         );
       }
     } else {
       await _dialogService.showDialog(
         title: 'Sign Up Failure',
         description: result,
+        cancelTitle: "Cancel",
       );
     }
   }

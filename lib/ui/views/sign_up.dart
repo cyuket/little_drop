@@ -82,7 +82,6 @@ class SignUpView extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-
                     InputField(
                       smallVersion: false,
                       controller: passwordController,
@@ -96,48 +95,21 @@ class SignUpView extends StatelessWidget {
                       height: 20,
                     ),
                     BusyButton(
-                        title: 'Sign Up',
-                        busy: model.busy,
-                        onPressed: () {
-                          model.signUp(
-                              email: emailController.text,
-                              password: passwordController.text,
-                              fullName: fullNameController.text,
-                              phoneNumber: phonNumberController.text);
-                        }),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    //   child: Column(
-                    //     children: <Widget>[
-                    //       Center(
-                    //         child: Text('Or',
-                    //             style: GoogleFonts.lato(
-                    //                 textStyle: TextStyle(
-                    //                     fontSize: 14, color: AppColors().textColor))),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // Row(
-                    //   mainAxisSize: MainAxisSize.max,
-                    //   children: <Widget>[
-                    //     SocialMediaButton(
-                    //       logoImage: AppAsset().google,
-                    //       name: 'Sign in with Google',
-                    //       isColor: true,
-                    //       isSmall: true,
-                    //     ),
-                    //     SizedBox(
-                    //       width: 40,
-                    //     ),
-                    //     SocialMediaButton(
-                    //       logoImage: AppAsset().facebook,
-                    //       color: AppColors().facebook,
-                    //       name: 'Sign in with Facebook',
-                    //       isSmall: true,
-                    //     )
-                    //   ],
-                    // ),
+                      title: 'Sign Up',
+                      busy: model.busy,
+                      onPressed: () {
+                        model.signUp(
+                          email: emailController.text,
+                          password: passwordController.text,
+                          fullName: fullNameController.text,
+                          phoneNumber: phonNumberController.text,
+                        );
+                        emailController.clear();
+                        passwordController.clear();
+                        phonNumberController.clear();
+                        fullNameController.clear();
+                      },
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
                       child: Row(
@@ -152,12 +124,14 @@ class SignUpView extends StatelessWidget {
                               Navigator.pushReplacementNamed(
                                   context, LoginViewRoute);
                             },
-                            child: Text('Login',
-                                style: GoogleFonts.lato(
-                                  textStyle: TextStyle(
-                                      fontSize: 12,
-                                      color: AppColors().primaryColor),
-                                )),
+                            child: Text(
+                              'Login',
+                              style: GoogleFonts.lato(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: AppColors().primaryColor),
+                              ),
+                            ),
                           )
                         ],
                       ),
