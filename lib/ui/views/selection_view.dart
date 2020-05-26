@@ -7,7 +7,6 @@ import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/ui/shared/shared_styles.dart';
 import 'package:little_drops/ui/widgets/busy_button.dart';
 import 'package:little_drops/ui/shared/screen_util.dart';
-import 'package:little_drops/ui/widgets/input_field.dart';
 import 'package:little_drops/ui/widgets/selected_item.dart';
 import 'package:little_drops/viewModel/selection_item_view_model.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -138,11 +137,17 @@ class SelectionView extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
                       child: BusyButton(
-                          title: "Proceed",
+                          title: (data.selectedItems.length <= 0)
+                              ? "Back"
+                              : "Proceed",
                           onPressed: () {
-                            Navigator.pushNamed(context, PickUpLocationRoute);
+                            (data.selectedItems.length <= 0)
+                                ? Navigator.pop(context)
+                                : Navigator.pushNamed(
+                                    context, PickUpLocationRoute);
                           }),
                     )
                   ],
