@@ -112,6 +112,7 @@ class PaystackService {
       deliveryTime: _itemSelectionServices.deliveryTime.format(context),
       deliveryAddress: _itemSelectionServices.deliveryAdress,
       pickupAddress: _itemSelectionServices.pickupAdress,
+      createdAt: new DateTime.now(),
     );
     await _firestoreService.createOrder(order);
     _navigationService.clearLastAndNavigateTo(OrderProgressRoute);

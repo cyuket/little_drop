@@ -8,7 +8,7 @@ class OrderModel {
   final String paymentType;
   final User user;
   final bool placed, pickup, picked, washing, packed, delivery;
-  final DateTime pickupDate, deliveryDate;
+  final DateTime pickupDate, deliveryDate, createdAt;
   final String pickupTime, deliveryTime;
   final String pickupAddress, deliveryAddress;
   List<dynamic> orderDetails;
@@ -30,6 +30,7 @@ class OrderModel {
     this.pickupTime,
     this.deliveryAddress,
     this.pickupAddress,
+    this.createdAt,
   });
   OrderModel.fromData(Map<String, dynamic> data)
       : status = data["status"],
@@ -48,7 +49,8 @@ class OrderModel {
         deliveryTime = data["deliveryTime"],
         pickupTime = data["pickupTime"],
         deliveryAddress = data["deliveryAddress"],
-        pickupAddress = data["pickupAddress"];
+        pickupAddress = data["pickupAddress"],
+        createdAt = data["createdAt"];
 
   Map<String, dynamic> toJson() {
     return {
@@ -68,7 +70,8 @@ class OrderModel {
       "pickupTime": pickupTime,
       "deliveryAddress": deliveryAddress,
       "pickupAddress": pickupAddress,
-      "paymentType": paymentType
+      "paymentType": paymentType,
+      "createdAt": createdAt
     };
   }
 }
