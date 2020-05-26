@@ -18,12 +18,17 @@ class _PickDateViewState extends State<PickDateView> {
   DateTime deliveryDate;
   TimeOfDay deliveryTime, pickUpTime;
 
-  Future _selectDate() async {
+  Future _selectDate({bool isDelivery = false}) async {
     DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: new DateTime.now(),
-        firstDate: new DateTime(2020),
-        lastDate: new DateTime(2025));
+      context: context,
+      initialDate: !isDelivery
+          ? new DateTime.now()
+          : DateTime.now().add(Duration(days: 1)),
+      firstDate:
+          //  DateTime.now().subtract(Duration(days: 0))
+          DateTime.now().add(Duration(days: 1)),
+      lastDate: DateTime(2100),
+    );
     return picked;
   }
 
@@ -100,7 +105,7 @@ class _PickDateViewState extends State<PickDateView> {
                             date: deliveryDate,
                             time: deliveryTime,
                             handleDate: () async {
-                              var value = await _selectDate();
+                              var value = await _selectDate(isDelivery: true);
                               setState(() {
                                 deliveryDate = value;
                                 print(deliveryDate);
