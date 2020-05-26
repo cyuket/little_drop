@@ -108,7 +108,6 @@ class _PickDateViewState extends State<PickDateView> {
                               var value = await _selectDate(isDelivery: true);
                               setState(() {
                                 deliveryDate = value;
-                                print(deliveryDate);
                               });
                             },
                             handleTime: () async {
