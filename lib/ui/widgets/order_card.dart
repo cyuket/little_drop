@@ -39,7 +39,7 @@ class OrderCards extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        active
+                        !active
                             ? ' Your clothes are being tushed up'
                             : 'Clothes Delivered',
                         style: GoogleFonts.lato(

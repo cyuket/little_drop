@@ -6,7 +6,7 @@ class OrderModel {
   final bool status;
   final String reference;
   final String paymentType;
-  final User user;
+  final String user;
   final bool placed, pickup, picked, washing, packed, delivery;
   final DateTime pickupDate, deliveryDate, createdAt;
   final String pickupTime, deliveryTime;
@@ -56,7 +56,7 @@ class OrderModel {
     return {
       "status": status,
       "reference": reference,
-      "user": user.toJson(),
+      "user": user,
       "placed": placed,
       "picked": picked,
       "pickup": pickup,

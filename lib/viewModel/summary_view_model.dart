@@ -50,7 +50,7 @@ class SummaryViewModel extends BaseModel {
       status: false,
       orderDetails: _items,
       reference: "",
-      user: _authenticationService.currentUser,
+      user: _authenticationService.currentUser.id,
       paymentType: _itemSelectionServices.paymentMethod,
       pickup: true,
       pickupDate: _itemSelectionServices.pickUpDate,

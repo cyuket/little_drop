@@ -25,6 +25,16 @@ class FirestoreService {
     }
   }
 
+  Future fetchAllOrder() async {
+    try {
+      var orders = await _orderCollectionReference.getDocuments();
+      return orders.documents;
+    } catch (e) {
+      print(e.message);
+      return e.message;
+    }
+  }
+
   Future getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.document(uid).get();
@@ -33,5 +43,4 @@ class FirestoreService {
       return e.message;
     }
   }
-  
 }

@@ -272,22 +272,3 @@ class _PickUpLocationState extends State<PickUpLocation> {
         });
   }
 }
-
-// IgnorePointer(
-//                                           child: Flexible(
-//                                             child: TextFormField(
-
-//                                               controller: pickUpController,
-//                                               decoration: InputDecoration(
-//                                                 hintText:
-//                                                     "Search pickup location",
-//                                                 hintStyle:
-//                                                     TextStyle(fontSize: 13),
-//                                                 border: InputBorder.none,
-//                                                 enabledBorder: InputBorder.none,
-//                                                 contentPadding: EdgeInsets.only(
-//                                                     left: 10, bottom: 17),
-//                                               ),
-//                                             ),
-//                                           ),
-//                                         ),

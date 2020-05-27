@@ -103,7 +103,7 @@ class PaystackService {
       status: false,
       orderDetails: _items,
       reference: transaction.reference,
-      user: _authenticationService.currentUser,
+      user: _authenticationService.currentUser.id,
       paymentType: _itemSelectionServices.paymentMethod,
       pickup: true,
       pickupDate: _itemSelectionServices.pickUpDate,
