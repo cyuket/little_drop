@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:little_drops/models/order_model.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
 import 'package:little_drops/constants/assets.dart';
 
 class OrderCards extends StatelessWidget {
-  final String orderNumber;
-  final bool active;
-
-  const OrderCards({this.orderNumber, this.active = true});
+  final OrderModel order;
+  const OrderCards({@required this.order});
 
   @override
   Widget build(BuildContext context) {
+    var time = DateFormat.jm().format(order.createdAt);
+    var date = DateFormat.yMMMMd('en_US').format(order.createdAt);
     return Padding(
       padding: const EdgeInsets.only(top: 20.0, bottom: 4),
       child: Container(
@@ -39,7 +41,7 @@ class OrderCards extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        !active
+                        !order.status
                             ? ' Your clothes are being tushed up'
                             : 'Clothes Delivered',
                         style: GoogleFonts.lato(
@@ -51,7 +53,7 @@ class OrderCards extends StatelessWidget {
                       Container(
                         width: 198,
                         child: Text(
-                          "Your order was placed on 13th May, 2020 by 4pm.",
+                          "Your order was placed on $date by $time.",
                           style: GoogleFonts.lato(
                             textStyle: TextStyle(
                                 color: AppColors().secTextcolor, fontSize: 12),
@@ -71,7 +73,7 @@ class OrderCards extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "ORD1320",
+                            order.orderNumber,
                             style: GoogleFonts.lato(
                               textStyle: TextStyle(
                                   color: AppColors().secTextcolor,

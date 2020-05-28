@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
@@ -13,7 +14,8 @@ class OrderView extends StatefulWidget {
 }
 
 class _OrderViewState extends State<OrderView> {
-  bool isCurrent = false;
+  bool isCurrent = true;
+  final _fireStore = Firestore.instance;
 
   changeStatus() {
     setState(() {
@@ -25,7 +27,6 @@ class _OrderViewState extends State<OrderView> {
   Widget build(BuildContext context) {
     return ViewModelProvider<OrderViewModel>.withConsumer(
         viewModelBuilder: () => OrderViewModel(),
-        onModelReady: (model) => model.fetchOrder(),
         builder: (context, data, child) {
           return Scaffold(
             backgroundColor: AppColors().background,
@@ -38,98 +39,113 @@ class _OrderViewState extends State<OrderView> {
                 style: header,
               ),
             ),
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  children: <Widget>[
-                    verticalSpace(20),
-                    Container(
-                      width: screenWidth(context) - 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: AppColors().primaryColor,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
+            body: StreamBuilder<QuerySnapshot>(
+                stream: _fireStore
+                    .collection("orders")
+                    .where("user", isEqualTo: data.user.id)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.lightBlueAccent,
                       ),
-                      child: Row(
+                    );
+                  }
+                  data.snapshotData(snapshot.data.documents.reversed);
+                  return SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
                         children: <Widget>[
-                          Expanded(
-                            child: InkWell(
-                              onTap: changeStatus,
-                              child: Container(
-                                color: isCurrent
-                                    ? AppColors().primaryColor
-                                    : Colors.transparent,
-                                child: Center(
-                                  child: Text(
-                                    "Current",
-                                    style: GoogleFonts.lato(
-                                      textStyle: TextStyle(
-                                          color: isCurrent
-                                              ? Colors.white
-                                              : AppColors().textColor,
-                                          fontSize: 16),
+                          verticalSpace(20),
+                          Container(
+                            width: screenWidth(context) - 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: AppColors().primaryColor,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: changeStatus,
+                                    child: Container(
+                                      color: isCurrent
+                                          ? AppColors().primaryColor
+                                          : Colors.transparent,
+                                      child: Center(
+                                        child: Text(
+                                          "Current",
+                                          style: GoogleFonts.lato(
+                                            textStyle: TextStyle(
+                                                color: isCurrent
+                                                    ? Colors.white
+                                                    : AppColors().textColor,
+                                                fontSize: 16),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: changeStatus,
+                                    child: Container(
+                                      color: !isCurrent
+                                          ? AppColors().primaryColor
+                                          : Colors.transparent,
+                                      child: Center(
+                                        child: Text(
+                                          "Past",
+                                          style: GoogleFonts.lato(
+                                            textStyle: TextStyle(
+                                                color: !isCurrent
+                                                    ? Colors.white
+                                                    : AppColors().textColor,
+                                                fontSize: 16),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           Expanded(
-                            child: InkWell(
-                              onTap: changeStatus,
-                              child: Container(
-                                color: !isCurrent
-                                    ? AppColors().primaryColor
-                                    : Colors.transparent,
-                                child: Center(
-                                  child: Text(
-                                    "Past",
-                                    style: GoogleFonts.lato(
-                                      textStyle: TextStyle(
-                                          color: !isCurrent
-                                              ? Colors.white
-                                              : AppColors().textColor,
-                                          fontSize: 16),
-                                    ),
+                            child: isCurrent
+                                ? ListView.builder(
+                                    itemBuilder: (context, index) {
+                                      return !data.orders[index].status
+                                          ? OrderCards(
+                                              order: data.orders[index],
+                                            )
+                                          : SizedBox();
+                                    },
+                                    itemCount: data.orders.length,
+                                  )
+                                : ListView.builder(
+                                    itemBuilder: (context, index) {
+                                      return data.orders[index].status
+                                          ? OrderCards(
+                                              order: data.orders[index],
+                                            )
+                                          : SizedBox();
+                                    },
+                                    itemCount: data.orders.length,
                                   ),
-                                ),
-                              ),
-                            ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: isCurrent
-                          ? ListView.builder(
-                              itemBuilder: (context, index) {
-                                return !data.orders[index].status
-                                    ? OrderCards(
-                                        active: data.orders[index].status,
-                                      )
-                                    : SizedBox();
-                              },
-                              itemCount: data.orders.length,
-                            )
-                          : ListView.builder(
-                              itemBuilder: (context, index) {
-                                return data.orders[index].status
-                                    ? OrderCards(
-                                        active: data.orders[index].status,
-                                      )
-                                    : SizedBox();
-                              },
-                              itemCount: data.orders.length,
-                            ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                  );
+                }),
           );
         });
   }
