@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:little_drops/constants/route_names.dart';
@@ -98,6 +100,8 @@ class PaystackService {
       var detail = item.toJson();
       _items.add(detail);
     }
+    var rng = new Random();
+    var number = rng.nextInt(2000);
 
     OrderModel order = OrderModel(
       status: false,
@@ -113,6 +117,7 @@ class PaystackService {
       deliveryAddress: _itemSelectionServices.deliveryAdress,
       pickupAddress: _itemSelectionServices.pickupAdress,
       createdAt: new DateTime.now(),
+      orderNumber: "ORD$number",
     );
     await _firestoreService.createOrder(order);
     _navigationService.clearLastAndNavigateTo(OrderProgressRoute);

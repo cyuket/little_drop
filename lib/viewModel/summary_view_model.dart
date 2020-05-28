@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/models/order_model.dart';
@@ -46,6 +48,9 @@ class SummaryViewModel extends BaseModel {
       var detail = item.toJson();
       _items.add(detail);
     }
+    var rng = new Random();
+    var number = rng.nextInt(2000);
+
     OrderModel order = OrderModel(
       status: false,
       orderDetails: _items,
@@ -60,6 +65,7 @@ class SummaryViewModel extends BaseModel {
       deliveryAddress: _itemSelectionServices.deliveryAdress,
       pickupAddress: _itemSelectionServices.pickupAdress,
       createdAt: new DateTime.now(),
+      orderNumber: "ORD$number",
     );
     await _firestoreService.createOrder(order);
     _navigationService.clearLastAndNavigateTo(OrderProgressRoute);
