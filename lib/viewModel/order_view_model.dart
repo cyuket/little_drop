@@ -1,6 +1,6 @@
 import 'package:little_drops/models/item_model.dart';
 import 'package:little_drops/models/order_model.dart';
-import 'package:little_drops/models/user.dart';
+import 'package:little_drops/services/authentication_service.dart';
 
 import 'base_model.dart';
 import 'package:little_drops/locator.dart';
@@ -8,10 +8,15 @@ import 'package:little_drops/services/firestore_service.dart';
 
 class OrderViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
+  final AuthenticationService _authenticationService =
+      locator<AuthenticationService>();
+
   List<OrderModel> orders = [];
+
   void fetchOrder() async {
     setBusy(true);
-    var result = await _firestoreService.fetchAllOrder();
+    var result = await _firestoreService
+        .fetchAllOrder(_authenticationService.currentUser.id);
     for (var order in result) {
       List<ItemModel> items = [];
 

@@ -25,9 +25,12 @@ class FirestoreService {
     }
   }
 
-  Future fetchAllOrder() async {
+  Future fetchAllOrder(String uid) async {
     try {
-      var orders = await _orderCollectionReference.getDocuments();
+      var orders = await _orderCollectionReference
+          .where("user", isEqualTo: uid)
+          .getDocuments();
+
       return orders.documents;
     } catch (e) {
       print(e.message);
