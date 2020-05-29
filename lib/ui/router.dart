@@ -92,7 +92,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case OrderProgressRoute:
       return _getPageRoute(
         routeName: settings.name,
-        viewToShow: OrderProgressView(),
+        viewToShow: OrderProgressView(settings.arguments),
       );
 
     default:
