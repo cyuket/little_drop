@@ -66,9 +66,9 @@ class SummaryViewModel extends BaseModel {
       orderNumber: "ORD$number",
     );
     await _firestoreService.createOrder(order).then((value) {
-      print(value);
-      _navigationService.clearLastAndNavigateTo(OrderProgressRoute,
+      _navigationService.removeAllAndNavigateTo(OrderProgressRoute,
           arguments: value.toString());
+      _itemSelectionServices.clearData();
     });
     ;
     setBusy(false);

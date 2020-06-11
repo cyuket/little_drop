@@ -25,6 +25,6 @@ class NavigationService {
     return _navigationKey.currentState
         //.pushNamed(routeName, arguments: arguments);
         //.pushAndRemoveUntil();
-        .pushReplacementNamed(routeName, arguments: arguments);
+        .pushNamedAndRemoveUntil(routeName, (r) => false, arguments: arguments);
   }
 }
