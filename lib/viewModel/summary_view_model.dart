@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/models/order_model.dart';
@@ -8,7 +7,6 @@ import 'package:little_drops/services/authentication_service.dart';
 import 'package:little_drops/services/firestore_service.dart';
 import 'package:little_drops/services/navigation_service.dart';
 import 'package:little_drops/services/paystack_service.dart';
-
 import 'base_model.dart';
 import 'package:little_drops/services/item_selection_services.dart';
 import 'package:little_drops/locator.dart';
@@ -57,7 +55,7 @@ class SummaryViewModel extends BaseModel {
       reference: "",
       user: _authenticationService.currentUser.id,
       paymentType: _itemSelectionServices.paymentMethod,
-      pickup: true,
+      placed: true,
       pickupDate: _itemSelectionServices.pickUpDate,
       pickupTime: _itemSelectionServices.pickUpTime.format(context),
       deliveryDate: _itemSelectionServices.deliveryDate,
@@ -67,8 +65,12 @@ class SummaryViewModel extends BaseModel {
       createdAt: new DateTime.now(),
       orderNumber: "ORD$number",
     );
-    await _firestoreService.createOrder(order);
-    _navigationService.clearLastAndNavigateTo(OrderProgressRoute);
+    await _firestoreService.createOrder(order).then((value) {
+      print(value);
+      _navigationService.clearLastAndNavigateTo(OrderProgressRoute,
+          arguments: value.toString());
+    });
+    ;
     setBusy(false);
   }
 }

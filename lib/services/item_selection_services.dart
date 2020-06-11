@@ -132,6 +132,23 @@ class ItemSelectionServices {
     _expiryDate = date;
     _cvv = cvvNumber;
   }
+
+  void clearData() {
+    _selectedItems = [];
+    _amount = 0;
+    _totalAmount = 0;
+    _delivery = 1000;
+    _cardNumber = null;
+    _expiryDate = null;
+    _cvv = null;
+    _deliveryAdress = null;
+    _deliveryAdress = null;
+    _pickupDate = null;
+    _deliveryDate = null;
+    _pickupTime = null;
+    _deliveryTime = null;
+    _paymentMethod = null;
+  }
 }
 
 // List of Items  that can be watched
