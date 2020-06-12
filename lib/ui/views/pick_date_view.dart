@@ -17,6 +17,15 @@ class _PickDateViewState extends State<PickDateView> {
   DateTime pickUpDate;
   DateTime deliveryDate;
   TimeOfDay deliveryTime, pickUpTime;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  void _showSnap(String message) {
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: new Text(message),
+      ),
+    );
+  }
 
   Future _selectDate({bool isDelivery = false}) async {
     DateTime picked = await showDatePicker(
@@ -47,6 +56,7 @@ class _PickDateViewState extends State<PickDateView> {
         viewModelBuilder: () => DateViewModel(),
         builder: (context, data, child) {
           return Scaffold(
+            key: _scaffoldKey,
             backgroundColor: AppColors().background,
             appBar: AppBar(
               elevation: 0,
@@ -125,6 +135,15 @@ class _PickDateViewState extends State<PickDateView> {
                       child: BusyButton(
                           title: "Next",
                           onPressed: () {
+                            if (pickUpDate == null)
+                              return _showSnap("Please select a Pickup date");
+                            if (pickUpTime == null)
+                              return _showSnap("Please select a Pickup time");
+                            if (deliveryDate == null)
+                              return _showSnap("Please select a delivery date");
+                            if (deliveryTime == null)
+                              return _showSnap("Please select a delivery date");
+
                             data.updatePickupAndDeliveryTime(
                               deliveryDate: deliveryDate,
                               deliveryTime: deliveryTime,
