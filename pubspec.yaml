@@ -26,6 +26,7 @@ dependencies:
   geocoder: ^0.2.1
   flutter_paystack: ^1.0.3+1
   http: ^0.12.1
+  credit_card_number_validator: ^1.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

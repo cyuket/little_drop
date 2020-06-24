@@ -71,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  credit_card_number_validator:
+    dependency: "direct main"
+    description:
+      name: credit_card_number_validator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   crypto:
     dependency: transitive
     description:

@@ -70,7 +70,7 @@ class SummaryViewModel extends BaseModel {
           arguments: value.toString());
       _itemSelectionServices.clearData();
     });
-    ;
+
     setBusy(false);
   }
 }

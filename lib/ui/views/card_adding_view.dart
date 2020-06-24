@@ -1,3 +1,4 @@
+import 'package:credit_card_number_validator/credit_card_number_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:little_drops/constants/route_names.dart';
@@ -10,10 +11,29 @@ import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:little_drops/viewModel/card_adding_view_model.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
 
-class CardAddingView extends StatelessWidget {
+class CardAddingView extends StatefulWidget {
+  @override
+  _CardAddingViewState createState() => _CardAddingViewState();
+}
+
+class _CardAddingViewState extends State<CardAddingView> {
   final cardNumberController = TextEditingController();
+
   final cardExpiryController = TextEditingController();
+
   final cardCvvController = TextEditingController();
+
+  bool isValid = false;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  void _showSnap(String message) {
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: new Text(message),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +41,7 @@ class CardAddingView extends StatelessWidget {
         viewModelBuilder: () => CardAddingViewModel(),
         builder: (context, data, child) {
           return Scaffold(
+            key: _scaffoldKey,
             backgroundColor: AppColors().background,
             appBar: AppBar(
               elevation: 0,
@@ -33,28 +54,31 @@ class CardAddingView extends StatelessWidget {
                 ),
               ),
             ),
-            body: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                height: screenHeight(context) - 100,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            body: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: screenWidth(context) - 70,
+                        child: Text("Please input your card details.",
+                            style: header),
+                      ),
+                      verticalSpace(10),
+                      Text(
+                        "This is a safe method of payment, if anything happens, we got you!",
+                        style: subTitle,
+                      ),
+                      verticalSpace(20),
+                    ],
+                  ),
+                  Expanded(
+                    child: ListView(
                       children: <Widget>[
-                        Container(
-                          width: screenWidth(context) - 70,
-                          child: Text("Please input your card details.",
-                              style: header),
-                        ),
-                        verticalSpace(10),
-                        Text(
-                          "This is a safe method of payment, if anything happens, we got you!",
-                          style: subTitle,
-                        ),
-                        verticalSpace(20),
                         InputField(
                           controller: cardNumberController,
                           placeholder: "",
@@ -64,7 +88,17 @@ class CardAddingView extends StatelessWidget {
                             CreditCardNumberInputFormatter(
                               onCardSystemSelected:
                                   (CardSystemData cardSystemData) {
-                                // print(cardSystemData.system);
+                                print(cardSystemData.system);
+
+                                Map<String, dynamic> cardData =
+                                    CreditCardValidator.getCard(
+                                        cardNumberController.text);
+                                setState(() {
+                                  // Set Card Type and Validity
+                                  isValid =
+                                      cardData[CreditCardValidator.isValidCard];
+                                  print(isValid);
+                                });
                               },
                               useSeparators: true,
                             )
@@ -100,21 +134,28 @@ class CardAddingView extends StatelessWidget {
                         )
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: BusyButton(
-                          title: "Proceed",
-                          onPressed: () {
-                            data.updateCardDetails(
-                              number: cardNumberController.text,
-                              date: cardExpiryController.text,
-                              cvvNumber: cardCvvController.text,
-                            );
-                            Navigator.pushNamed(context, OrderSummaryRoute);
-                          }),
-                    )
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: BusyButton(
+                        title: "Proceed",
+                        onPressed: () {
+                          if (cardNumberController.text == "")
+                            return _showSnap("Please Enter Card Number");
+                          if (cardCvvController.text == "")
+                            return _showSnap("Cvv Can't be empty");
+                          if (cardExpiryController.text == "")
+                            return _showSnap(
+                                "Please Enter Expiry date of the card");
+                          data.updateCardDetails(
+                            number: cardNumberController.text,
+                            date: cardExpiryController.text,
+                            cvvNumber: cardCvvController.text,
+                          );
+                          Navigator.pushNamed(context, OrderSummaryRoute);
+                        }),
+                  )
+                ],
               ),
             ),
           );

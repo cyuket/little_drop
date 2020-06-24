@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:little_drops/constants/route_names.dart';
 import 'package:little_drops/models/order_model.dart';
 import 'package:little_drops/ui/shared/app_colors.dart';
 import 'package:little_drops/ui/shared/ui_helpers.dart';
@@ -88,25 +89,33 @@ class OrderCards extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  "See more   ",
-                  style: GoogleFonts.lato(
-                    textStyle: TextStyle(
-                        color: AppColors().primaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
+            InkWell(
+              onTap: () {
+                !order.status
+                    ? Navigator.pushNamed(context, OrderProgressRoute,
+                        arguments: order.id)
+                    : null;
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    "See more   ",
+                    style: GoogleFonts.lato(
+                      textStyle: TextStyle(
+                          color: AppColors().primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                Icon(
-                  Icons.keyboard_arrow_right,
-                  color: AppColors().primaryColor,
-                  size: 20,
-                )
-              ],
+                  Icon(
+                    Icons.keyboard_arrow_right,
+                    color: AppColors().primaryColor,
+                    size: 20,
+                  )
+                ],
+              ),
             )
           ],
         ),

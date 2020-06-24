@@ -19,7 +19,6 @@ class OrderViewModel extends BaseModel {
     setBusy(true);
     for (var order in snapshot) {
       List<ItemModel> items = [];
-
       for (var item in order.data["orderDetails"]) {
         items.add(ItemModel.fromData(item));
       }
@@ -47,6 +46,7 @@ class OrderViewModel extends BaseModel {
         createdAt: DateTime.fromMillisecondsSinceEpoch(
             order.data["createdAt"].millisecondsSinceEpoch),
         orderNumber: order.data["orderNumber"],
+        id: order.documentID,
       );
       data.add(orderModel);
     }

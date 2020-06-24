@@ -4,7 +4,7 @@ import 'package:little_drops/models/user.dart';
 
 class OrderModel {
   final bool status;
-  final String reference, orderNumber;
+  final String reference, orderNumber, id;
   final String paymentType;
   final String user;
   final bool placed, pickup, picked, washing, packed, delivery;
@@ -32,6 +32,7 @@ class OrderModel {
     this.pickupAddress,
     this.createdAt,
     this.orderNumber,
+    this.id,
   });
   OrderModel.fromData(Map<String, dynamic> data)
       : status = data["status"],
@@ -52,7 +53,8 @@ class OrderModel {
         deliveryAddress = data["deliveryAddress"],
         pickupAddress = data["pickupAddress"],
         createdAt = data["createdAt"],
-        orderNumber = data["orderNumber"];
+        orderNumber = data["orderNumber"],
+        id = data["id"];
 
   Map<String, dynamic> toJson() {
     return {
